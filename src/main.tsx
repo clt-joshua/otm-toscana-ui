@@ -4,7 +4,8 @@ import "./index.css";
 import App from "./App.tsx";
 
 // MUI 관련 임포트
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
 import CssBaseline from "@mui/material/CssBaseline";
 
 // font source
@@ -12,8 +13,6 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-
-const theme = createTheme({});
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
