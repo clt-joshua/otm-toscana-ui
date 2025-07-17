@@ -3,32 +3,32 @@ import Avatar from "@mui/material/Avatar";
 import Chip, { type ChipProps } from "@mui/material/Chip";
 
 export default function CheckableChip(props: ChipProps & { checked: boolean }) {
-  const { checked, label, ...rest } = props;
-  return (
-    <Chip
-      icon={
-        checked ? (
-          <Avatar
-            sx={{
-              backgroundColor: `${props.color}.dark`,
-              width: "18px",
-              height: "18px",
-            }}
-          >
-            <CheckIcon sx={{ fontSize: "18px", color: "white" }} />
-          </Avatar>
-        ) : undefined
-      }
-      sx={{
-        "& .MuiChip-label": {
-          display: "flex",
-          alignItems: "center",
-        },
-      }}
-      label={label}
-      color={checked ? "info" : "default"}
-      variant={checked ? "filled" : "outlined"}
-      {...rest}
-    />
-  );
+	const { checked, label, ...rest } = props;
+	return (
+		<Chip
+			icon={
+				checked ? (
+					<Avatar
+						sx={{
+							backgroundColor: `${props.color}.dark`,
+							width: "18px",
+							height: "18px",
+						}}
+					>
+						<CheckIcon sx={{ fontSize: "18px", color: "white" }} />
+					</Avatar>
+				) : undefined
+			}
+			sx={{
+				"& .MuiChip-label": {
+					display: "flex",
+					alignItems: "center",
+				},
+			}}
+			label={label}
+			color={checked ? "info" : "default"}
+			variant={checked ? "filled" : "outlined"}
+			{...rest}
+		/>
+	);
 }
