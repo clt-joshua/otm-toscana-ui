@@ -14,8 +14,12 @@ import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { grey } from "@mui/material/colors";
+import CheckableChip from "./components/chip/CheckableChip";
+import { useState } from "react";
 
 export default function Header() {
+  const [checked, setChecked] = useState(false);
+
   return (
     <Box
       component="header"
@@ -95,6 +99,12 @@ export default function Header() {
               fontWeight: 400,
             },
           }}
+        />
+        <CheckableChip
+          label="CheckableChip"
+          color="info"
+          checked={checked}
+          onClick={() => setChecked(!checked)}
         />
         <IconButton>
           <InfoOutlineIcon sx={{ color: grey[300] }} />

@@ -243,17 +243,13 @@ const theme = createTheme({
 		//     },
 		//   },
 		// },
-		// MuiChip: {
-		//   styleOverrides: {
-		//     root: {
-		//       '&:hover': { backgroundColor: "rgba(0, 0, 0, 0.04)" },
-		//       '&.Mui-focusVisible': { backgroundColor: "rgba(0, 0, 0, 0.12)" },
-		//     },
-		//     deleteIcon: {
-		//       color: "rgba(0, 0, 0, 0.2)",
-		//     },
-		//   },
-		// },
+		MuiChip: {
+			styleOverrides: {
+				root: {
+					height: "24px",
+				},
+			},
+		},
 		// 예시: native 스크롤바 색상, outline 등은 필요시 styleOverrides에서 활용
 	},
 	// typography 등 추가 확장 가능

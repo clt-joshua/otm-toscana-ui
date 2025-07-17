@@ -1,6 +1,5 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import CssBaseline from "@mui/material/CssBaseline";
 
 // MUI 관련 임포트
@@ -15,10 +14,10 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
 createRoot(document.getElementById("root")!).render(
-	<StrictMode>
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<App />
-		</ThemeProvider>
-	</StrictMode>,
+  <StrictMode>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  </StrictMode>
 );
