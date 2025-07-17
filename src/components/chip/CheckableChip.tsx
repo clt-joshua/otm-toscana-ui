@@ -10,7 +10,11 @@ export default function CheckableChip(props: ChipProps & { checked: boolean }) {
       icon={
         checked ? (
           <Avatar
-            sx={{ backgroundColor: "info.dark", width: "18px", height: "18px" }}
+            sx={{
+              backgroundColor: `${props.color}.dark`,
+              width: "18px",
+              height: "18px",
+            }}
           >
             <CheckIcon sx={{ fontSize: "18px", color: "white" }} />
           </Avatar>
