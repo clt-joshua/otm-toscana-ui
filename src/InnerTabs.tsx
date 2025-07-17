@@ -1,10 +1,10 @@
+import CloseIcon from "@mui/icons-material/Close";
+import { Divider } from "@mui/material";
 import Box from "@mui/material/Box";
 import { blueGrey } from "@mui/material/colors";
-import Typography from "@mui/material/Typography";
-import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import { Divider } from "@mui/material";
 
 export default function InnerTabs() {
   const [tabs, setTabs] = useState<string[]>(["Tab 1", "Tab 2", "Tab 3"]);
