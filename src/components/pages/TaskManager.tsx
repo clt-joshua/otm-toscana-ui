@@ -5,11 +5,21 @@ import { formatNumber } from "../../util";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import { blueGrey } from "@mui/material/colors";
 
 export default function TaskManager() {
   return (
     <Box component="div" display="flex" flexDirection="column" sx={{ flex: 1 }}>
-      <Box flex={1}>11</Box>
+      <Box flex={1} display="flex" flexDirection="column">
+        <Box
+          margin={1}
+          flex={1}
+          bgcolor="white"
+          borderRadius={1}
+          border={1}
+          borderColor={blueGrey[200]}
+        ></Box>
+      </Box>
       <BottomButtonArea />
     </Box>
   );
