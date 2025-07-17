@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import { blueGrey } from "@mui/material/colors";
+import { Outlet } from "react-router";
 import Header from "./Header";
 import InnerTabs from "./InnerTabs";
 import SideNavigation from "./SideNavigation";
@@ -20,8 +21,18 @@ function App() {
 				sx={{ display: "flex", flexDirection: "row", flex: 1 }}
 			>
 				<SideNavigation />
-				<Box component="main" sx={{ flex: 1, backgroundColor: blueGrey[50] }}>
+				<Box
+					component="main"
+					sx={{
+						flex: 1,
+						backgroundColor: blueGrey[50],
+						height: "100%",
+						display: "flex",
+						flexDirection: "column",
+					}}
+				>
 					<InnerTabs />
+					<Outlet />
 				</Box>
 			</Box>
 		</main>

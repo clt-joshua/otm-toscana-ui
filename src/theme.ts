@@ -80,6 +80,11 @@ export const customColors = {
 		600: "#757575",
 		800: "#424242",
 	},
+	components: {
+		rating: {
+			enabledBorder: "rgba(0, 0, 0, 0.23)",
+		},
+	},
 };
 
 const theme = createTheme({
