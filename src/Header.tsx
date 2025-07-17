@@ -101,7 +101,7 @@ export default function Header() {
           }}
         />
         <CheckableChip
-          label="CheckableChip"
+          label="OTM"
           color="info"
           checked={checked}
           onClick={() => setChecked(!checked)}
