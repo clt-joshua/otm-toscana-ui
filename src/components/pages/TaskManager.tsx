@@ -6,6 +6,9 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { customColors } from "../../theme";
 import { formatNumber } from "../../util";
+import SearchIcon from "@mui/icons-material/Search";
+import OutlinedIconButton from "../button/OutlinedIconButton";
+import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 
 export default function TaskManager() {
   return (
@@ -19,9 +22,24 @@ export default function TaskManager() {
           border={1}
           borderColor={blueGrey[200]}
         >
-          <Box padding="8px 12px" borderBottom={1} borderColor={blueGrey[200]}>
+          <Box
+            padding="8px 12px"
+            borderBottom={1}
+            borderColor={blueGrey[200]}
+            display="flex"
+            justifyContent="space-between"
+          >
             <Typography variant="tableHeader">Task Manager</Typography>
+            <Box display="flex" gap={1}>
+              <OutlinedIconButton color="info" aria-label="search">
+                <SearchIcon sx={{ fontSize: "20px" }} />
+              </OutlinedIconButton>
+              <OutlinedIconButton color="info" aria-label="zoom">
+                <ZoomOutMapIcon sx={{ fontSize: "20px" }} />
+              </OutlinedIconButton>
+            </Box>
           </Box>
+          <Box></Box>
         </Box>
       </Box>
       <BottomButtonArea />
