@@ -9,8 +9,13 @@ import { formatNumber } from "../../util";
 import SearchIcon from "@mui/icons-material/Search";
 import OutlinedIconButton from "../button/OutlinedIconButton";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
+import { ToggleButtonGroup } from "@mui/material";
+import { useState } from "react";
+import CustomToggleButton from "../button/CustomToggleButton";
 
 export default function TaskManager() {
+  const [toggleSelection, setToggleSelection] = useState<string>("cn");
+
   return (
     <Box component="div" display="flex" flexDirection="column" sx={{ flex: 1 }}>
       <Box flex={1} display="flex" flexDirection="column">
@@ -31,6 +36,31 @@ export default function TaskManager() {
           >
             <Typography variant="tableHeader">Task Manager</Typography>
             <Box display="flex" gap={1}>
+              <ToggleButtonGroup
+                size="small"
+                exclusive
+                value={toggleSelection}
+                onChange={(_, value) => {
+                  if (value !== null) {
+                    setToggleSelection(value);
+                  }
+                }}
+              >
+                <CustomToggleButton
+                  value="cn"
+                  color="info"
+                  groupValue={toggleSelection}
+                >
+                  CN
+                </CustomToggleButton>
+                <CustomToggleButton
+                  value="uc"
+                  color="info"
+                  groupValue={toggleSelection}
+                >
+                  UC
+                </CustomToggleButton>
+              </ToggleButtonGroup>
               <OutlinedIconButton color="info" aria-label="search">
                 <SearchIcon sx={{ fontSize: "20px" }} />
               </OutlinedIconButton>
