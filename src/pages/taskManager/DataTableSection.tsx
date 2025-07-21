@@ -10,7 +10,7 @@ export default function DataTableSection() {
     { key: "planType", label: "Plan Type" },
     { key: "type", label: "Type" },
     { key: "opr", label: "OPR" },
-    { key: "pod", label: "POD" },
+    { key: "pod", label: "POD", width: "80px" },
     { key: "npod", label: "NPOD" },
     { key: "fpod", label: "FPOD" },
     { key: "from", label: "From" },
