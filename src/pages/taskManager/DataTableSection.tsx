@@ -14,11 +14,20 @@ export default function DataTableSection() {
     <TableContainer
       sx={{
         flexGrow: 1,
+        width: "100%",
         height: 0,
-        overflow: "auto",
+        minWidth: "max-content",
       }}
     >
-      <Table stickyHeader size="small">
+      <Table
+        stickyHeader
+        size="small"
+        sx={{
+          tableLayout: "auto",
+          minWidth: "max-content",
+          width: "max-content",
+        }}
+      >
         <TableHead>
           <TableRow>
             {[
@@ -42,42 +51,78 @@ export default function DataTableSection() {
               { key: "opProcess", label: "Op.Process" },
               { key: "port", label: "Port" },
             ].map((col) => (
-              <TableCell key={col.key}>{col.label}</TableCell>
+              <TableCell
+                key={col.key}
+                sx={{
+                  minWidth: "max-content",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {col.label}
+              </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
           {TASK_MANAGER_TABLE_DATA.map((row, index) => (
             <TableRow key={row.cargo}>
-              <TableCell>{index + 1}</TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell>{row.cargo}</TableCell>
-              <TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {index + 1}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.status}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.cargo}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
                 <PlanTypeCell planType={row.planType} />
               </TableCell>
-              <TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
                 <TypeCell type={row.type} />
               </TableCell>
-              <TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
                 <OprCell opr={row.opr} />
               </TableCell>
-              <TableCell>{row.pod}</TableCell>
-              <TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.pod}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
                 <NpodCell npod={row.npod} />
               </TableCell>
-              <TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
                 <FpodCell fpod={row.fpod} />
               </TableCell>
-              <TableCell>{row.from}</TableCell>
-              <TableCell>{row.to}</TableCell>
-              <TableCell>{row.transporter}</TableCell>
-              <TableCell>{row.startEq}</TableCell>
-              <TableCell>{row.fa}</TableCell>
-              <TableCell>{row.recDelCardNo}</TableCell>
-              <TableCell>{row.waiting}</TableCell>
-              <TableCell>{row.planSeq}</TableCell>
-              <TableCell>{row.opProcess}</TableCell>
-              <TableCell>{row.port}</TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.from}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.to}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.transporter}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.startEq}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.fa}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.recDelCardNo}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.waiting}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.planSeq}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.opProcess}
+              </TableCell>
+              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
+                {row.port}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

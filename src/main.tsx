@@ -18,10 +18,13 @@ const globalStyles = `
     font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
   }
   
-  body {
-    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+  html, body, #root {
     margin: 0;
     padding: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
   }
 `;
 
@@ -31,10 +34,10 @@ styleElement.textContent = globalStyles;
 document.head.appendChild(styleElement);
 
 createRoot(document.getElementById("root")!).render(
-	<StrictMode>
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<App />
-		</ThemeProvider>
-	</StrictMode>,
+  <StrictMode>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  </StrictMode>
 );
