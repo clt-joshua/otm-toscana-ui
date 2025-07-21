@@ -8,7 +8,7 @@ import { formatNumber } from "../../util";
 import SearchIcon from "@mui/icons-material/Search";
 import OutlinedIconButton from "../button/OutlinedIconButton";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
-import { ToggleButtonGroup } from "@mui/material";
+import { TextField, ToggleButtonGroup } from "@mui/material";
 import { useState } from "react";
 import CustomToggleButton from "../button/CustomToggleButton";
 import BasicContainer from "../container/BasicContainer";
@@ -226,7 +226,12 @@ export default function TaskManager() {
                   ))}
                 </Box>
                 <Divider orientation="vertical" flexItem />
-                <Box display="flex" flexDirection="row" gap={0.5}>
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  alignItems="center"
+                  gap={0.5}
+                >
                   {group4.map((item) => (
                     <CheckableChip
                       key={item}
@@ -236,7 +241,31 @@ export default function TaskManager() {
                       onClick={() => handleChipClick(item)}
                     />
                   ))}
+                  <TextField value={60} sx={{ width: "40px" }} disabled />
                 </Box>
+              </Box>
+              <Box
+                display="grid"
+                gridTemplateColumns="repeat(5, 1fr)"
+                gridTemplateRows="repeat(2, 1fr)"
+                gap={1}
+              >
+                <TextField label="Equipment" />
+                <TextField label="Vessel Kapal" disabled />
+                <TextField label="Gang" />
+                <TextField label="POW" />
+                <TextField
+                  label="Cargo No."
+                  multiline
+                  maxRows={2}
+                  sx={{
+                    gridRow: "span 2",
+                  }}
+                />
+                <TextField label="Equipment" />
+                <TextField label="Equipment" />
+                <TextField label="Equipment" />
+                <TextField label="Equipment" />
               </Box>
             </SearchContainer>
             <DetailContainer flex={1} fontWeight="600">

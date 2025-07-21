@@ -280,6 +280,44 @@ const theme = createTheme({
         },
       },
     },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiInputBase-root": {
+            height: "26px",
+            "& .MuiInputBase-input": {
+              fontSize: "13px",
+              paddingLeft: "10px",
+              paddingRight: "10px",
+            },
+            "&.Mui-disabled": {
+              backgroundColor: "rgba(84, 110, 122, 0.16)",
+            },
+          },
+          // multiline일 때만 별도 스타일 적용
+          "& .MuiInputBase-multiline.MuiInputBase-root": {
+            height: "100%",
+            padding: "4px 0px",
+          },
+          "& .MuiInputBase-multiline.MuiInputBase-root textarea": {
+            height: "100% !important",
+            lineHeight: "1.5",
+          },
+          "& .MuiInputLabel-root": {
+            transform: "translate(10px, 3px) scale(1)",
+            fontSize: "13px",
+            "&.Mui-focused, &.MuiFormLabel-filled": {
+              transform: "translate(10px, -6px) scale(0.75)",
+            },
+          },
+          "& .MuiOutlinedInput-notchedOutline": {
+            "& legend": {
+              fontSize: "9px",
+            },
+          },
+        },
+      },
+    },
     // 예시: native 스크롤바 색상, outline 등은 필요시 styleOverrides에서 활용
   },
   // typography 등 추가 확장 가능
