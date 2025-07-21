@@ -1,7 +1,6 @@
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { blueGrey } from "@mui/material/colors";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { customColors } from "../../theme";
@@ -12,30 +11,28 @@ import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import { ToggleButtonGroup } from "@mui/material";
 import { useState } from "react";
 import CustomToggleButton from "../button/CustomToggleButton";
+import BasicContainer from "../container/BasicContainer";
+import SearchContainer from "../container/SearchContainer";
+import DetailContainer from "../container/DetailContainer";
+import CheckableCustomChip from "../chip/CheckableCustomChip";
 
 export default function TaskManager() {
   const [toggleSelection, setToggleSelection] = useState<string>("cn");
+  const [selectedChips, setSelectedChips] = useState<string[]>([]);
+
+  function handleChipClick(chip: string) {
+    setSelectedChips((prev) =>
+      prev.includes(chip) ? prev.filter((c) => c !== chip) : [...prev, chip]
+    );
+  }
 
   return (
     <Box component="div" display="flex" flexDirection="column" sx={{ flex: 1 }}>
       <Box flex={1} display="flex" flexDirection="column">
-        <Box
-          margin={1}
-          flex={1}
-          bgcolor="white"
-          borderRadius={1}
-          border={1}
-          borderColor={blueGrey[200]}
-        >
-          <Box
-            padding="8px 12px"
-            borderBottom={1}
-            borderColor={blueGrey[200]}
-            display="flex"
-            justifyContent="space-between"
-          >
-            <Typography variant="tableHeader">Task Manager</Typography>
-            <Box display="flex" gap={1}>
+        <BasicContainer
+          title="Task Manager"
+          buttonSlot={
+            <>
               <ToggleButtonGroup
                 size="small"
                 exclusive
@@ -67,10 +64,69 @@ export default function TaskManager() {
               <OutlinedIconButton color="info" aria-label="zoom">
                 <ZoomOutMapIcon sx={{ fontSize: "20px" }} />
               </OutlinedIconButton>
-            </Box>
+            </>
+          }
+        >
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap={1.5}
+            padding={1.5}
+            flex={1}
+            height="100%"
+          >
+            <SearchContainer
+              display="flex"
+              flexDirection="column"
+              gap={1.5}
+              padding={1.5}
+            >
+              <Box display="flex" gap={0.5}>
+                <CheckableCustomChip
+                  bgColor="rgba(14, 142, 194, 1)"
+                  color="white"
+                  isChecked={selectedChips.includes("ds")}
+                  onClick={() => handleChipClick("ds")}
+                >
+                  DS
+                </CheckableCustomChip>
+                <CheckableCustomChip
+                  bgColor="rgba(240, 144, 40, 1)"
+                  color="white"
+                  isChecked={selectedChips.includes("ld")}
+                  onClick={() => handleChipClick("ld")}
+                >
+                  LD
+                </CheckableCustomChip>
+                <CheckableCustomChip
+                  bgColor="rgba(58, 58, 58, 1)"
+                  color="white"
+                  isChecked={selectedChips.includes("rs")}
+                  onClick={() => handleChipClick("rs")}
+                >
+                  RS
+                </CheckableCustomChip>
+                <CheckableCustomChip
+                  bgColor="rgba(246, 213, 109, 1)"
+                  color="black"
+                  isChecked={selectedChips.includes("lc")}
+                  onClick={() => handleChipClick("lc")}
+                >
+                  LC
+                </CheckableCustomChip>
+                <CheckableCustomChip
+                  bgColor="rgba(217, 214, 48, 1)"
+                  color="black"
+                  isChecked={selectedChips.includes("de")}
+                  onClick={() => handleChipClick("de")}
+                >
+                  DE
+                </CheckableCustomChip>
+              </Box>
+            </SearchContainer>
+            <DetailContainer flex={1}>222</DetailContainer>
           </Box>
-          <Box></Box>
-        </Box>
+        </BasicContainer>
       </Box>
       <BottomButtonArea />
     </Box>
