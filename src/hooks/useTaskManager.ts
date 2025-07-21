@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import type { TaskManagerState } from "../components/pages/taskManager/TaskManagerTypes";
+import type { TaskManagerState } from "../pages/taskManager/TaskManagerTypes";
 
 export function useTaskManager() {
   const [state, setState] = useState<TaskManagerState>({

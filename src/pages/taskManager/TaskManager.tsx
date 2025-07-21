@@ -5,9 +5,9 @@ import {
   END_BUTTON_DATA,
   START_BUTTON_DATA,
   STATUS_OPTIONS,
-} from "../../../constants/taskManagerData";
-import { useTaskManager } from "../../../hooks/useTaskManager";
-import DetailContainer from "../../container/DetailContainer";
+} from "../../constants/taskManagerData";
+import { useTaskManager } from "../../hooks/useTaskManager";
+import DetailContainer from "../../components/container/DetailContainer";
 import { TaskManagerFooter } from "./TaskManagerFooter";
 import { TaskManagerHeader } from "./TaskManagerHeader";
 import { TaskSearchSection } from "./SearchSection";

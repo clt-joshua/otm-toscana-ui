@@ -5,7 +5,7 @@ import TruckIcon from "../assets/icon_truck.svg?react";
 import type {
   ButtonData,
   ChipGroup,
-} from "../components/pages/taskManager/TaskManagerTypes";
+} from "../pages/taskManager/TaskManagerTypes";
 
 export const CHIP_GROUPS: ChipGroup[] = [
   {

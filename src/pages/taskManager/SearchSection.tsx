@@ -2,9 +2,9 @@ import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import React from "react";
-import CheckableChip from "../../chip/CheckableChip";
-import CheckableCustomChip from "../../chip/CheckableCustomChip";
-import SearchContainer from "../../container/SearchContainer";
+import CheckableChip from "../../components/chip/CheckableChip";
+import CheckableCustomChip from "../../components/chip/CheckableCustomChip";
+import SearchContainer from "../../components/container/SearchContainer";
 import type { ChipGroup } from "./TaskManagerTypes";
 
 interface TaskSearchSectionProps {

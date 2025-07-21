@@ -4,8 +4,8 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import { customColors } from "../../../theme";
-import { formatNumber } from "../../../util";
+import { customColors } from "../../theme";
+import { formatNumber } from "../../util";
 import type { ButtonData } from "./TaskManagerTypes";
 
 interface TaskManagerFooterProps {
