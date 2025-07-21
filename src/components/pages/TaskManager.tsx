@@ -15,6 +15,9 @@ import BasicContainer from "../container/BasicContainer";
 import SearchContainer from "../container/SearchContainer";
 import DetailContainer from "../container/DetailContainer";
 import CheckableCustomChip from "../chip/CheckableCustomChip";
+import TruckIcon from "../../assets/icon_truck.svg";
+import TerminalIcon from "../../assets/icon_terminal.svg";
+import ShipIcon from "../../assets/icon_ship.svg?react";
 
 export default function TaskManager() {
   const [toggleSelection, setToggleSelection] = useState<string>("cn");
@@ -25,6 +28,102 @@ export default function TaskManager() {
       prev.includes(chip) ? prev.filter((c) => c !== chip) : [...prev, chip]
     );
   }
+
+  const group1 = [
+    {
+      label: "Ship",
+      type: "icon",
+      icon: <ShipIcon />,
+      color: "white",
+      bgColor: "rgba(21, 179, 205, 1)",
+    },
+    {
+      label: "DS",
+      type: "text",
+      color: "white",
+      bgColor: "rgba(14, 142, 194, 1)",
+    },
+    {
+      label: "LD",
+      type: "text",
+      color: "white",
+      bgColor: "rgba(240, 144, 40, 1)",
+    },
+    {
+      label: "RS",
+      type: "text",
+      color: "white",
+      bgColor: "rgba(58, 58, 58, 1)",
+    },
+    {
+      label: "LC",
+      type: "text",
+      color: "black",
+      bgColor: "rgba(246, 213, 109, 1)",
+    },
+    {
+      label: "DE",
+      type: "text",
+      color: "black",
+      bgColor: "rgba(217, 214, 48, 1)",
+    },
+  ];
+
+  const group2 = [
+    {
+      label: "Truck",
+      type: "icon",
+      icon: TruckIcon,
+      bgColor: "rgba(68, 162, 77, 1)",
+      color: "white",
+    },
+    {
+      label: "GI",
+      type: "text",
+      color: "black",
+      bgColor: "rgba(72, 210, 98, 1)",
+    },
+    {
+      label: "GO",
+      type: "text",
+      color: "white",
+      bgColor: "rgba(250, 53, 51, 1)",
+    },
+    {
+      label: "GC",
+      type: "text",
+      color: "white",
+      bgColor: "rgba(160, 160, 160, 1)",
+    },
+  ];
+
+  const group3 = [
+    {
+      label: "Terminal",
+      type: "icon",
+      icon: TerminalIcon,
+      color: "white",
+      bgColor: "rgba(251, 140, 0, 1)",
+    },
+    {
+      label: "HK",
+      type: "text",
+      color: "white",
+      bgColor: "rgba(91, 56, 170, 1)",
+    },
+    {
+      label: "AH",
+      type: "text",
+      color: "black",
+      bgColor: "rgba(206, 227, 238, 1)",
+    },
+    {
+      label: "CT",
+      type: "text",
+      color: "white",
+      bgColor: "rgba(22, 59, 84, 1)",
+    },
+  ];
 
   return (
     <Box component="div" display="flex" flexDirection="column" sx={{ flex: 1 }}>
@@ -81,50 +180,61 @@ export default function TaskManager() {
               gap={1.5}
               padding={1.5}
             >
-              <Box display="flex" gap={0.5}>
-                <CheckableCustomChip
-                  bgColor="rgba(14, 142, 194, 1)"
-                  color="white"
-                  isChecked={selectedChips.includes("ds")}
-                  onClick={() => handleChipClick("ds")}
-                >
-                  DS
-                </CheckableCustomChip>
-                <CheckableCustomChip
-                  bgColor="rgba(240, 144, 40, 1)"
-                  color="white"
-                  isChecked={selectedChips.includes("ld")}
-                  onClick={() => handleChipClick("ld")}
-                >
-                  LD
-                </CheckableCustomChip>
-                <CheckableCustomChip
-                  bgColor="rgba(58, 58, 58, 1)"
-                  color="white"
-                  isChecked={selectedChips.includes("rs")}
-                  onClick={() => handleChipClick("rs")}
-                >
-                  RS
-                </CheckableCustomChip>
-                <CheckableCustomChip
-                  bgColor="rgba(246, 213, 109, 1)"
-                  color="black"
-                  isChecked={selectedChips.includes("lc")}
-                  onClick={() => handleChipClick("lc")}
-                >
-                  LC
-                </CheckableCustomChip>
-                <CheckableCustomChip
-                  bgColor="rgba(217, 214, 48, 1)"
-                  color="black"
-                  isChecked={selectedChips.includes("de")}
-                  onClick={() => handleChipClick("de")}
-                >
-                  DE
-                </CheckableCustomChip>
+              <Box display="flex" flexDirection="row" gap={1.5}>
+                <Box display="flex" gap={0.5}>
+                  {group1.map((item) => (
+                    <CheckableCustomChip
+                      key={item.label}
+                      bgColor={item.bgColor}
+                      color={item.color}
+                      isChecked={selectedChips.includes(item.label)}
+                      onClick={() => handleChipClick(item.label)}
+                    >
+                      {item.type === "icon" ? item.icon : item.label}
+                    </CheckableCustomChip>
+                  ))}
+                </Box>
+                <Divider orientation="vertical" flexItem />
+                <Box display="flex" flexDirection="row" gap={0.5}>
+                  {group2.map((item) => (
+                    <CheckableCustomChip
+                      key={item.label}
+                      bgColor={item.bgColor}
+                      color={item.color}
+                      isChecked={selectedChips.includes(item.label)}
+                      onClick={() => handleChipClick(item.label)}
+                    >
+                      {item.type === "icon" ? (
+                        <img src={item.icon} alt={item.label} />
+                      ) : (
+                        item.label
+                      )}
+                    </CheckableCustomChip>
+                  ))}
+                </Box>
+                <Divider orientation="vertical" flexItem />
+                <Box display="flex" flexDirection="row" gap={0.5}>
+                  {group3.map((item) => (
+                    <CheckableCustomChip
+                      key={item.label}
+                      bgColor={item.bgColor}
+                      color={item.color}
+                      isChecked={selectedChips.includes(item.label)}
+                      onClick={() => handleChipClick(item.label)}
+                    >
+                      {item.type === "icon" ? (
+                        <img src={item.icon} alt={item.label} />
+                      ) : (
+                        item.label
+                      )}
+                    </CheckableCustomChip>
+                  ))}
+                </Box>
               </Box>
             </SearchContainer>
-            <DetailContainer flex={1}>222</DetailContainer>
+            <DetailContainer flex={1} fontWeight="600">
+              222
+            </DetailContainer>
           </Box>
         </BasicContainer>
       </Box>

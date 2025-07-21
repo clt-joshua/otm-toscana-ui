@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import DockIcon from "./assets/dock_icon.svg";
+import DockIcon from "./assets/icon_dock.svg";
 import logo from "./assets/logo.svg";
 import BasicCustomChip from "./components/chip/BasicCustomChip";
 import ChipButton from "./components/chip/ChipButton";

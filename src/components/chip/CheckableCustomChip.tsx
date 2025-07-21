@@ -34,12 +34,9 @@ export default function CheckableCustomChip({
         color: isChecked ? color : theme.palette.action.disabled,
         cursor: "pointer",
         userSelect: "none",
-        fontWeight: isText ? "500 !important" : "normal !important",
+        fontWeight: 500,
         "&:hover": {
           opacity: 0.8,
-        },
-        "& *": {
-          fontWeight: isText ? "500 !important" : "normal !important",
         },
       }}
     >
