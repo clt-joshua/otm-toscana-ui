@@ -26,10 +26,15 @@ export default function TaskManager() {
       component="div"
       display="flex"
       flexDirection="column"
-      padding={1}
       sx={{ flex: 1, minWidth: 0 }}
     >
-      <Box flex={1} display="flex" flexDirection="column" sx={{ minWidth: 0 }}>
+      <Box
+        margin={1}
+        flex={1}
+        display="flex"
+        flexDirection="column"
+        sx={{ minWidth: 0 }}
+      >
         <TaskManagerHeader
           toggleSelection={state.toggleSelection}
           onToggleChange={handleToggleChange}

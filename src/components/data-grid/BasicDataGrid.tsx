@@ -47,7 +47,7 @@ export default function BasicDataGrid({
         sx={{
           tableLayout: "auto",
           minWidth: "max-content",
-          width: "max-content",
+          width: "100%",
         }}
       >
         <TableHead>
