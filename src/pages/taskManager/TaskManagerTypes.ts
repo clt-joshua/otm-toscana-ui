@@ -30,3 +30,24 @@ export interface ButtonData {
 	disabled?: boolean;
 	action?: string;
 }
+
+export interface TaskManagerTableProps {
+	status: string;
+	cargo: string;
+	planType: string;
+	type: string;
+	opr: string;
+	pod: string;
+	npod: string;
+	fpod: string;
+	from: string;
+	to: string;
+	transporter: string;
+	startEq: string;
+	fa: string;
+	recDelCardNo: string;
+	waiting: string;
+	planSeq: string;
+	opProcess: string;
+	port: string;
+}

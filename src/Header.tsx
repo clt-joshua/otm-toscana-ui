@@ -12,12 +12,15 @@ import {
 	Typography,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import { useTheme } from "@mui/material/styles";
 import DockIcon from "./assets/icon_dock.svg?react";
 import Logo from "./assets/logo.svg?react";
 import BasicCustomChip from "./components/chip/BasicCustomChip";
 import ChipButton from "./components/chip/ChipButton";
 
 export default function Header() {
+	const theme = useTheme();
+
 	return (
 		<Box
 			component="header"
@@ -49,7 +52,11 @@ export default function Header() {
 					}}
 				/>
 				<DockIcon />
-				<BasicCustomChip label="ASIA" />
+				<BasicCustomChip
+					label="ASIA"
+					bgColor={theme.palette.info.main}
+					textColor="white"
+				/>
 				<Typography variant="tableHeader" color="white">
 					Vessel Name
 				</Typography>
