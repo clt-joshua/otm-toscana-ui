@@ -15,9 +15,10 @@ import BasicContainer from "../container/BasicContainer";
 import SearchContainer from "../container/SearchContainer";
 import DetailContainer from "../container/DetailContainer";
 import CheckableCustomChip from "../chip/CheckableCustomChip";
-import TruckIcon from "../../assets/icon_truck.svg";
-import TerminalIcon from "../../assets/icon_terminal.svg";
+import TruckIcon from "../../assets/icon_truck.svg?react";
+import TerminalIcon from "../../assets/icon_terminal.svg?react";
 import ShipIcon from "../../assets/icon_ship.svg?react";
+import CheckableChip from "../chip/CheckableChip";
 
 export default function TaskManager() {
   const [toggleSelection, setToggleSelection] = useState<string>("cn");
@@ -73,7 +74,7 @@ export default function TaskManager() {
     {
       label: "Truck",
       type: "icon",
-      icon: TruckIcon,
+      icon: <TruckIcon />,
       bgColor: "rgba(68, 162, 77, 1)",
       color: "white",
     },
@@ -101,7 +102,7 @@ export default function TaskManager() {
     {
       label: "Terminal",
       type: "icon",
-      icon: TerminalIcon,
+      icon: <TerminalIcon />,
       color: "white",
       bgColor: "rgba(251, 140, 0, 1)",
     },
@@ -124,6 +125,8 @@ export default function TaskManager() {
       bgColor: "rgba(22, 59, 84, 1)",
     },
   ];
+
+  const group4 = ["Initialize", "Active", "Complete", "Suspended"];
 
   return (
     <Box component="div" display="flex" flexDirection="column" sx={{ flex: 1 }}>
@@ -204,11 +207,7 @@ export default function TaskManager() {
                       isChecked={selectedChips.includes(item.label)}
                       onClick={() => handleChipClick(item.label)}
                     >
-                      {item.type === "icon" ? (
-                        <img src={item.icon} alt={item.label} />
-                      ) : (
-                        item.label
-                      )}
+                      {item.type === "icon" ? item.icon : item.label}
                     </CheckableCustomChip>
                   ))}
                 </Box>
@@ -222,12 +221,20 @@ export default function TaskManager() {
                       isChecked={selectedChips.includes(item.label)}
                       onClick={() => handleChipClick(item.label)}
                     >
-                      {item.type === "icon" ? (
-                        <img src={item.icon} alt={item.label} />
-                      ) : (
-                        item.label
-                      )}
+                      {item.type === "icon" ? item.icon : item.label}
                     </CheckableCustomChip>
+                  ))}
+                </Box>
+                <Divider orientation="vertical" flexItem />
+                <Box display="flex" flexDirection="row" gap={0.5}>
+                  {group4.map((item) => (
+                    <CheckableChip
+                      key={item}
+                      label={item}
+                      color="info"
+                      checked={selectedChips.includes(item)}
+                      onClick={() => handleChipClick(item)}
+                    />
                   ))}
                 </Box>
               </Box>
