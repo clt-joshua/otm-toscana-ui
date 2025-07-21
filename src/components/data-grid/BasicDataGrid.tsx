@@ -37,17 +37,14 @@ export default function BasicDataGrid({
       sx={{
         flexGrow: 1,
         width: "100%",
-        height: 0,
-        minWidth: "max-content",
+        height: "100%",
       }}
     >
       <Table
         stickyHeader
         size="small"
         sx={{
-          tableLayout: "auto",
           minWidth: "max-content",
-          width: "100%",
         }}
       >
         <TableHead>
@@ -59,7 +56,10 @@ export default function BasicDataGrid({
                   minWidth: "max-content",
                   whiteSpace: "nowrap",
                   borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
-                  position: "relative",
+                  backgroundColor: "white",
+                  position: "sticky",
+                  top: 0,
+                  zIndex: 1,
                   ...(col.width && { width: col.width }),
                   ...(col.align && { textAlign: col.align }),
                 }}
@@ -106,6 +106,7 @@ export default function BasicDataGrid({
                     minWidth: "max-content",
                     whiteSpace: "nowrap",
                     cursor: "pointer",
+                    padding: "4px 16px",
                     borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
                     ...(selectedCell?.rowIdx === idx &&
                     selectedCell?.colKey === col.key

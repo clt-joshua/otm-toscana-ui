@@ -62,7 +62,6 @@ export default function TaskManager() {
                 flexShrink: 1,
                 height: 0,
                 minWidth: 0,
-                overflow: "auto",
               }}
             >
               <DataTableSection />

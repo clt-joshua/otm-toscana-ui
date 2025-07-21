@@ -7,6 +7,7 @@ import {
   SIMPLE_TABLE_DATA,
   VESSEL_SCHEDULE_LIST_TABLE_DATA,
 } from "../../constants/vesselVoyageData";
+import BasicCustomChip from "../../components/chip/BasicCustomChip";
 
 export default function VesselVoyage() {
   return (
@@ -46,6 +47,7 @@ export default function VesselVoyage() {
           >
             <BasicDataGrid
               header={[
+                { key: "no", label: "No" },
                 { key: "vessel", label: "Vessel" },
                 { key: "voyage", label: "Voyage" },
                 { key: "oprVoyage", label: "OPR Voyage" },
@@ -64,11 +66,12 @@ export default function VesselVoyage() {
                 { key: "close", label: "Close" },
                 { key: "workQuantity", label: "Work Quantity" },
               ]}
-              data={VESSEL_SCHEDULE_LIST_TABLE_DATA.map((item) => ({
+              data={VESSEL_SCHEDULE_LIST_TABLE_DATA.map((item, index) => ({
+                no: index + 1,
                 vessel: item.vessel,
                 voyage: item.voyage,
                 oprVoyage: item.oprVoyage,
-                opr: item.opr,
+                opr: <OPRCell opr={item.opr} />,
                 vesselName: item.vesselName,
                 ata: item.ata.toLocaleDateString(),
                 atb: item.atb.toLocaleDateString(),
@@ -166,5 +169,28 @@ export default function VesselVoyage() {
         </Box>
       </BasicContainer>
     </Box>
+  );
+}
+
+function OPRCell({ opr }: { opr: string }) {
+  const chipMap: Record<string, { bgColor: string; textColor: string }> = {
+    MOL: { bgColor: "rgba(195, 230, 203, 1)", textColor: "black" },
+    MSC: { bgColor: "rgba(246, 241, 71, 1)", textColor: "black" },
+    HSD: { bgColor: "rgba(201, 47, 35, 1)", textColor: "white" },
+    MSK: { bgColor: "rgba(107, 176, 238, 1)", textColor: "black" },
+  };
+
+  const chip = chipMap[opr];
+
+  if (!chip) {
+    return null;
+  }
+
+  return (
+    <BasicCustomChip
+      label={opr}
+      bgColor={chip.bgColor}
+      textColor={chip.textColor}
+    />
   );
 }

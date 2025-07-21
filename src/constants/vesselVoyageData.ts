@@ -32,7 +32,7 @@ export const VESSEL_SCHEDULE_LIST_TABLE_DATA: VesselScheduleListTableProps[] =
     vessel: "CLVB",
     voyage: "OLSC-0001",
     oprVoyage: "TST01 / TST01",
-    opr: faker.helpers.arrayElement(["MOL", "MSC", "HSD", "MSK", "NYK"]),
+    opr: faker.helpers.arrayElement(["MOL", "MSC", "HSD", "MSK"]),
     vesselName: "Snows Cargo",
     ata: faker.date.recent(),
     atb: faker.date.recent(),
