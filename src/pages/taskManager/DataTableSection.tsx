@@ -1,134 +1,54 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
 import BasicCustomChip from "../../components/chip/BasicCustomChip";
+import BasicDataGrid from "../../components/data-grid/BasicDataGrid";
 import { TASK_MANAGER_TABLE_DATA } from "../../constants/taskManagerData";
 
 export default function DataTableSection() {
-  return (
-    <TableContainer
-      sx={{
-        flexGrow: 1,
-        width: "100%",
-        height: 0,
-        minWidth: "max-content",
-      }}
-    >
-      <Table
-        stickyHeader
-        size="small"
-        sx={{
-          tableLayout: "auto",
-          minWidth: "max-content",
-          width: "max-content",
-        }}
-      >
-        <TableHead>
-          <TableRow>
-            {[
-              { key: "No", label: "No" },
-              { key: "status", label: "Status" },
-              { key: "cargo", label: "Cargo" },
-              { key: "planType", label: "Plan Type" },
-              { key: "type", label: "Type" },
-              { key: "opr", label: "OPR" },
-              { key: "pod", label: "POD" },
-              { key: "npod", label: "NPOD" },
-              { key: "fpod", label: "FPOD" },
-              { key: "from", label: "From" },
-              { key: "to", label: "To" },
-              { key: "transporter", label: "Transporter" },
-              { key: "startEq", label: "Start EQ" },
-              { key: "fa", label: "F/A" },
-              { key: "recDelCardNo", label: "REC/DEL Card No." },
-              { key: "waiting", label: "Waiting(mins)" },
-              { key: "planSeq", label: "Plan Seq." },
-              { key: "opProcess", label: "Op.Process" },
-              { key: "port", label: "Port" },
-            ].map((col) => (
-              <TableCell
-                key={col.key}
-                sx={{
-                  minWidth: "max-content",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {col.label}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {TASK_MANAGER_TABLE_DATA.map((row, index) => (
-            <TableRow key={row.cargo}>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {index + 1}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.status}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.cargo}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                <PlanTypeCell planType={row.planType} />
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                <TypeCell type={row.type} />
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                <OprCell opr={row.opr} />
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.pod}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                <NpodCell npod={row.npod} />
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                <FpodCell fpod={row.fpod} />
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.from}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.to}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.transporter}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.startEq}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.fa}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.recDelCardNo}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.waiting}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.planSeq}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.opProcess}
-              </TableCell>
-              <TableCell sx={{ minWidth: "max-content", whiteSpace: "nowrap" }}>
-                {row.port}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+  const header = [
+    { key: "No", label: "No" },
+    { key: "status", label: "Status" },
+    { key: "cargo", label: "Cargo" },
+    { key: "planType", label: "Plan Type" },
+    { key: "type", label: "Type" },
+    { key: "opr", label: "OPR" },
+    { key: "pod", label: "POD" },
+    { key: "npod", label: "NPOD" },
+    { key: "fpod", label: "FPOD" },
+    { key: "from", label: "From" },
+    { key: "to", label: "To" },
+    { key: "transporter", label: "Transporter" },
+    { key: "startEq", label: "Start EQ" },
+    { key: "fa", label: "F/A" },
+    { key: "recDelCardNo", label: "REC/DEL Card No." },
+    { key: "waiting", label: "Waiting(mins)" },
+    { key: "planSeq", label: "Plan Seq." },
+    { key: "opProcess", label: "Op.Process" },
+    { key: "port", label: "Port" },
+  ];
+
+  const data = TASK_MANAGER_TABLE_DATA.map((row, index) => ({
+    No: index + 1,
+    status: row.status,
+    cargo: row.cargo,
+    planType: <PlanTypeCell planType={row.planType} />,
+    type: <TypeCell type={row.type} />,
+    opr: <OprCell opr={row.opr} />,
+    pod: row.pod,
+    npod: <NpodCell npod={row.npod} />,
+    fpod: <FpodCell fpod={row.fpod} />,
+    from: row.from,
+    to: row.to,
+    transporter: row.transporter,
+    startEq: row.startEq,
+    fa: row.fa,
+    recDelCardNo: row.recDelCardNo,
+    waiting: row.waiting,
+    planSeq: row.planSeq,
+    opProcess: row.opProcess,
+    port: row.port,
+    cargoKey: row.cargo, // key prop용
+  }));
+
+  return <BasicDataGrid header={header} data={data} />;
 }
 
 function PlanTypeCell({ planType }: { planType: string }) {
