@@ -8,18 +8,12 @@ import {
 } from "../../../constants/taskManagerData";
 import { useTaskManager } from "../../../hooks/useTaskManager";
 import DetailContainer from "../../container/DetailContainer";
-import { TaskManagerFooter } from "./footer";
-import { TaskManagerHeader } from "./header";
+import { TaskManagerFooter } from "./TaskManagerFooter";
+import { TaskManagerHeader } from "./TaskManagerHeader";
 import { TaskSearchSection } from "./SearchSection";
 
 export default function TaskManager() {
-  const {
-    state,
-    formData,
-    handleToggleChange,
-    handleChipClick,
-    handleFormChange,
-  } = useTaskManager();
+  const { state, handleToggleChange, handleChipClick } = useTaskManager();
 
   const handleAction = useCallback((action: string) => {
     // 액션 처리 로직
@@ -45,9 +39,7 @@ export default function TaskManager() {
               chipGroups={CHIP_GROUPS}
               statusOptions={STATUS_OPTIONS}
               selectedChips={state.selectedChips}
-              formData={formData}
               onChipClick={handleChipClick}
-              onFormChange={handleFormChange}
             />
             <DetailContainer flex={1}>222</DetailContainer>
           </Box>

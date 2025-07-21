@@ -5,24 +5,20 @@ import React from "react";
 import CheckableChip from "../../chip/CheckableChip";
 import CheckableCustomChip from "../../chip/CheckableCustomChip";
 import SearchContainer from "../../container/SearchContainer";
-import type { ChipGroup, SearchFormData } from "./types";
+import type { ChipGroup } from "./TaskManagerTypes";
 
 interface TaskSearchSectionProps {
   chipGroups: ChipGroup[];
   statusOptions: string[];
   selectedChips: string[];
-  formData: SearchFormData;
   onChipClick: (chip: string) => void;
-  onFormChange: (field: keyof SearchFormData, value: string) => void;
 }
 
 export const TaskSearchSection = React.memo(function TaskSearchSection({
   chipGroups,
   statusOptions,
   selectedChips,
-  formData,
   onChipClick,
-  onFormChange,
 }: TaskSearchSectionProps) {
   return (
     <SearchContainer
@@ -75,31 +71,12 @@ export const TaskSearchSection = React.memo(function TaskSearchSection({
         gridTemplateRows="repeat(2, 1fr)"
         gap={1}
       >
-        <TextField
-          label="Equipment"
-          value={formData.equipment}
-          onChange={(e) => onFormChange("equipment", e.target.value)}
-        />
-        <TextField
-          label="Vessel Kapal"
-          value={formData.vesselKapal}
-          onChange={(e) => onFormChange("vesselKapal", e.target.value)}
-          disabled
-        />
-        <TextField
-          label="Gang"
-          value={formData.gang}
-          onChange={(e) => onFormChange("gang", e.target.value)}
-        />
-        <TextField
-          label="POW"
-          value={formData.pow}
-          onChange={(e) => onFormChange("pow", e.target.value)}
-        />
+        <TextField label="Equipment" />
+        <TextField label="Vessel Kapal" disabled />
+        <TextField label="Gang" />
+        <TextField label="POW" />
         <TextField
           label="Cargo No."
-          value={formData.cargoNo}
-          onChange={(e) => onFormChange("cargoNo", e.target.value)}
           multiline
           maxRows={2}
           sx={{
