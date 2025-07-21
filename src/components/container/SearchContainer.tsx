@@ -3,20 +3,20 @@ import { blueGrey } from "@mui/material/colors";
 import { customColors } from "../../theme";
 
 export default function SearchContainer({
-  children,
-  ...props
+	children,
+	...props
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 } & BoxProps) {
-  return (
-    <Box
-      bgcolor={customColors.blueGrey[20]}
-      borderRadius={1}
-      border={1}
-      borderColor={blueGrey[200]}
-      {...props}
-    >
-      {children}
-    </Box>
-  );
+	return (
+		<Box
+			bgcolor={customColors.blueGrey[20]}
+			borderRadius={1}
+			border={1}
+			borderColor={blueGrey[200]}
+			{...props}
+		>
+			{children}
+		</Box>
+	);
 }
