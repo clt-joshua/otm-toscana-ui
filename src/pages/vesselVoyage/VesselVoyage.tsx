@@ -1,4 +1,4 @@
-import { Box, TextField } from "@mui/material";
+import { Box, Checkbox, TextField } from "@mui/material";
 import BasicContainer from "../../components/container/BasicContainer";
 import SearchContainer from "../../components/container/SearchContainer";
 import DetailContainer from "../../components/container/DetailContainer";
@@ -8,6 +8,7 @@ import {
   VESSEL_SCHEDULE_LIST_TABLE_DATA,
 } from "../../constants/vesselVoyageData";
 import BasicCustomChip from "../../components/chip/BasicCustomChip";
+import { format } from "date-fns";
 
 export default function VesselVoyage() {
   return (
@@ -53,9 +54,9 @@ export default function VesselVoyage() {
                 { key: "oprVoyage", label: "OPR Voyage" },
                 { key: "opr", label: "OPR" },
                 { key: "vesselName", label: "Vessel Name" },
-                { key: "ata", label: "ATA" },
-                { key: "atb", label: "ATB" },
-                { key: "atd", label: "ATD" },
+                { key: "ata", label: "ATA (ETA)" },
+                { key: "atb", label: "ATB (ETB)" },
+                { key: "atd", label: "ATD (ETD)" },
                 { key: "callingStatus", label: "Calling Status" },
                 { key: "berth", label: "Berth" },
                 { key: "alongside", label: "Alongside" },
@@ -73,17 +74,31 @@ export default function VesselVoyage() {
                 oprVoyage: item.oprVoyage,
                 opr: <OPRCell opr={item.opr} />,
                 vesselName: item.vesselName,
-                ata: item.ata.toLocaleDateString(),
-                atb: item.atb.toLocaleDateString(),
-                atd: item.atd.toLocaleDateString(),
-                callingStatus: item.callingStatus,
+                ata: (
+                  <span style={{ textDecoration: "underline" }}>
+                    {format(item.ata, "yyyy-MM-dd HH:mm")}
+                  </span>
+                ),
+                atb: (
+                  <span style={{ textDecoration: "underline" }}>
+                    {format(item.atb, "yyyy-MM-dd HH:mm")}
+                  </span>
+                ),
+                atd: (
+                  <span style={{ textDecoration: "underline" }}>
+                    {format(item.atd, "yyyy-MM-dd HH:mm")}
+                  </span>
+                ),
+                callingStatus: (
+                  <CallingStatusCell callingStatus={item.callingStatus} />
+                ),
                 berth: item.berth,
                 alongside: item.alongside,
                 head: item.head,
                 bittNumber: item.bittNumber,
                 diversion: item.diversion,
-                cancel: item.cancel,
-                close: item.close,
+                cancel: <Checkbox />,
+                close: <Checkbox />,
                 workQuantity: item.workQuantity,
               }))}
             />
@@ -189,6 +204,28 @@ function OPRCell({ opr }: { opr: string }) {
   return (
     <BasicCustomChip
       label={opr}
+      bgColor={chip.bgColor}
+      textColor={chip.textColor}
+    />
+  );
+}
+
+function CallingStatusCell({ callingStatus }: { callingStatus: string }) {
+  const chipMap: Record<string, { bgColor: string; textColor: string }> = {
+    BERTHING: { bgColor: "rgba(27, 58, 83, 1)", textColor: "white" },
+    PLANNED: { bgColor: "rgba(244, 214, 115, 1)", textColor: "black" },
+    READY: { bgColor: "rgba(86, 58, 168, 1)", textColor: "white" },
+  };
+
+  const chip = chipMap[callingStatus];
+
+  if (!chip) {
+    return null;
+  }
+
+  return (
+    <BasicCustomChip
+      label={callingStatus}
       bgColor={chip.bgColor}
       textColor={chip.textColor}
     />

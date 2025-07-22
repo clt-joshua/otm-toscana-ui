@@ -280,6 +280,18 @@ const theme = createTheme({
         },
       },
     },
+    MuiCheckbox: {
+      defaultProps: {
+        color: "info",
+        size: "small",
+      },
+      styleOverrides: {
+        root: {
+          width: "26px",
+          height: "26px",
+        },
+      },
+    },
     MuiTextField: {
       styleOverrides: {
         root: {
