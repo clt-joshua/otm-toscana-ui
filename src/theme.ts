@@ -297,6 +297,7 @@ const theme = createTheme({
         root: {
           "& .MuiInputBase-root": {
             height: "26px",
+            backgroundColor: "white",
             "& .MuiInputBase-input": {
               fontSize: "13px",
               paddingLeft: "10px",
@@ -324,7 +325,7 @@ const theme = createTheme({
           },
           "& .MuiOutlinedInput-notchedOutline": {
             "& legend": {
-              fontSize: "8px",
+              fontSize: "9px",
             },
           },
         },

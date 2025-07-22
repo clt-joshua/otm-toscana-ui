@@ -1,4 +1,4 @@
-import { Box, Checkbox, TextField } from "@mui/material";
+import { Box, Checkbox, Tab, Tabs, TextField } from "@mui/material";
 import BasicContainer from "../../components/container/BasicContainer";
 import SearchContainer from "../../components/container/SearchContainer";
 import DetailContainer from "../../components/container/DetailContainer";
@@ -9,16 +9,15 @@ import {
 } from "../../constants/vesselVoyageData";
 import BasicCustomChip from "../../components/chip/BasicCustomChip";
 import { format } from "date-fns";
+import { blueGrey } from "@mui/material/colors";
+import { useState } from "react";
+import VoyageInformation from "./VoyageInformation";
 
 export default function VesselVoyage() {
+  const [tab, setTab] = useState<string>("vesselScheduleList");
+
   return (
-    <Box
-      display="grid"
-      gridTemplateColumns="1fr 1fr"
-      padding={1}
-      gap={1}
-      sx={{ flex: 1, minWidth: 0 }}
-    >
+    <Box padding={1} gap={1} flex={1} display="flex" flexDirection="column">
       <BasicContainer
         title="Vessel Schedule List"
         sx={{ gridColumn: "span 2" }}
@@ -105,84 +104,105 @@ export default function VesselVoyage() {
           </DetailContainer>
         </Box>
       </BasicContainer>
-      <BasicContainer
-        title="Vessel Schedule List"
-        sx={{ gridColumn: "span 2" }}
+      <Box
+        display="flex"
+        flexDirection="column"
+        bgcolor="white"
+        borderRadius={1}
+        border={1}
+        borderColor={blueGrey[200]}
+        sx={{
+          gridColumn: "span 2",
+        }}
       >
-        2
-      </BasicContainer>
-      <BasicContainer title="Voyage Information (Supplement)">
-        <Box
-          padding={1}
-          display="flex"
-          flexDirection="column"
-          gap={1}
-          flex={1}
-          sx={{ minWidth: 0 }}
-          height="100%"
-        >
-          <DetailContainer
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              flexGrow: 1,
-              flexShrink: 1,
-              height: 0,
-              minWidth: 0,
-              overflow: "auto",
-            }}
-          >
-            <BasicDataGrid
-              header={[
-                { key: "item", label: "Item" },
-                { key: "value", label: "Value" },
-                { key: "description", label: "Description" },
-              ]}
-              data={SIMPLE_TABLE_DATA.map((item) => ({
-                item: item.item,
-                value: item.value,
-                description: item.description,
-              }))}
-            />
-          </DetailContainer>
+        <Box paddingX={1} borderBottom={1} borderColor={blueGrey[200]}>
+          <Tabs value={tab} onChange={(_, value) => setTab(value)}>
+            <Tab label="Vessel Information" />
+            <Tab label="Voyage Schedule" />
+            <Tab label="Voyage Log" />
+          </Tabs>
         </Box>
-      </BasicContainer>
-      <BasicContainer title="Voyage Log">
-        <Box
-          padding={1}
-          display="flex"
-          flexDirection="column"
-          gap={1}
-          flex={1}
-          sx={{ minWidth: 0 }}
-          height="100%"
-        >
-          <DetailContainer
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              flexGrow: 1,
-              flexShrink: 1,
-              height: 0,
-              minWidth: 0,
-              overflow: "auto",
-            }}
-          >
-            <BasicDataGrid
-              header={[
-                { key: "item", label: "Item" },
-                { key: "value", label: "Value" },
-                { key: "description", label: "Description" },
-              ]}
-              data={SIMPLE_TABLE_DATA.map((item) => ({
-                item: item.item,
-                value: item.value,
-                description: item.description,
-              }))}
-            />
-          </DetailContainer>
+        <Box display="flex" flexDirection="row" padding={1} gap={1}>
+          <VoyageInformation />
+          <BasicContainer title="Voyage Schedule">
+            <Box padding={1}></Box>
+          </BasicContainer>
         </Box>
-      </BasicContainer>
+      </Box>
+      <Box display="flex" flexDirection="row" gap={1} height={140}>
+        <BasicContainer title="Voyage Information (Supplement)">
+          <Box
+            padding={1}
+            display="flex"
+            flexDirection="column"
+            gap={1}
+            flex={1}
+            sx={{ minWidth: 0 }}
+            height="100%"
+          >
+            <DetailContainer
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                flexGrow: 1,
+                flexShrink: 1,
+                height: 0,
+                minWidth: 0,
+                overflow: "auto",
+              }}
+            >
+              <BasicDataGrid
+                header={[
+                  { key: "item", label: "Item" },
+                  { key: "value", label: "Value" },
+                  { key: "description", label: "Description" },
+                ]}
+                data={SIMPLE_TABLE_DATA.map((item) => ({
+                  item: item.item,
+                  value: item.value,
+                  description: item.description,
+                }))}
+              />
+            </DetailContainer>
+          </Box>
+        </BasicContainer>
+        <BasicContainer title="Voyage Log">
+          <Box
+            padding={1}
+            display="flex"
+            flexDirection="column"
+            gap={1}
+            flex={1}
+            sx={{ minWidth: 0 }}
+            height="100%"
+          >
+            <DetailContainer
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                flexGrow: 1,
+                flexShrink: 1,
+                height: 0,
+                minWidth: 0,
+                overflow: "auto",
+              }}
+            >
+              <BasicDataGrid
+                header={[
+                  { key: "item", label: "Item" },
+                  { key: "value", label: "Value" },
+                  { key: "description", label: "Description" },
+                ]}
+                data={SIMPLE_TABLE_DATA.map((item) => ({
+                  item: item.item,
+                  value: item.value,
+                  description: item.description,
+                }))}
+              />
+            </DetailContainer>
+          </Box>
+        </BasicContainer>
+      </Box>
     </Box>
   );
 }
