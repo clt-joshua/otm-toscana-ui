@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker";
 import React from "react";
-import ShipIcon from "../assets/icon_ship.svg?react";
+import ShipIcon from "../assets/icon_menu_ship.svg?react";
 import TerminalIcon from "../assets/icon_terminal.svg?react";
-import TruckIcon from "../assets/icon_truck.svg?react";
+import TruckIcon from "../assets/icon_menu_truck.svg?react";
 import type {
   ButtonData,
   ChipGroup,

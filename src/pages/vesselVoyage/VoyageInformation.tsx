@@ -2,7 +2,7 @@ import { Box, Button, Grid, InputAdornment, TextField } from "@mui/material";
 import BasicContainer from "../../components/container/BasicContainer";
 import SearchContainer from "../../components/container/SearchContainer";
 import CheckableCustomChip from "../../components/chip/CheckableCustomChip";
-import ShipIcon from "../../assets/icon_ship.svg?react";
+import ShipIcon from "../../assets/icon_menu_ship.svg?react";
 
 export default function VoyageInformation() {
   return (
