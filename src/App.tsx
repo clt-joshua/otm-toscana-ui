@@ -34,7 +34,6 @@ const App = observer(function App() {
         sx={{
           minWidth: 0,
           position: "relative",
-          paddingRight: "10px",
         }}
       >
         <SideNavigation />

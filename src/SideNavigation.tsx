@@ -20,88 +20,202 @@ import theme from "./theme";
 import menuStore from "./stores/MenuStore";
 import { Typography } from "@mui/material";
 import { ArrowDropDown } from "@mui/icons-material";
+import { menuData } from "./constants/menuData";
 
-const menuItems = [
-  {
-    id: "master",
-    label: "Master",
-    icon: <IconMenuMaster />,
-  },
-  {
-    id: "document",
-    label: "Document",
-    icon: <IconMenuDocument />,
-  },
-  {
-    id: "inventory",
-    label: "Inventory",
-    icon: <IconMenuInventory />,
-  },
-  {
-    id: "truck",
-    label: "Truck",
-    icon: <IconMenuTruck />,
-  },
-  {
-    id: "vessel",
-    label: "Vessel",
-    icon: <IconMenuVessel />,
-  },
-  {
-    id: "yard",
-    label: "Yard",
-    icon: <IconMenuYard />,
-  },
-  {
-    id: "cfs",
-    label: "CFS & Warehouse",
-    icon: <IconMenuCfs />,
-  },
-  {
-    id: "operation",
-    label: "Operation",
-    icon: <IconMenuOperation />,
-  },
-  {
-    id: "equipment",
-    label: "Equipment",
-    icon: <IconMenuEquipment />,
-  },
-  {
-    id: "billing",
-    label: "Billing",
-    icon: <IconMenuBilling />,
-  },
-  {
-    id: "hr",
-    label: "HR",
-    icon: <IconMenuHr />,
-  },
-  {
-    id: "monitoring",
-    label: "Monitoring",
-    icon: <IconMenuMonitoring />,
-  },
-  {
-    id: "dashboard",
-    label: "Dashboard",
-    icon: <IconMenuDashboard />,
-  },
-  {
-    id: "interface",
-    label: "Interface",
-    icon: <IconMenuInterface />,
-  },
-  {
-    id: "admin",
-    label: "Admin",
-    icon: <IconMenuAdmin />,
-  },
-];
+// 메뉴 ID와 아이콘 매핑
+const menuIconMap: Record<string, React.ReactNode> = {
+  master: <IconMenuMaster />,
+  document: <IconMenuDocument />,
+  inventory: <IconMenuInventory />,
+  truck: <IconMenuTruck />,
+  vessel: <IconMenuVessel />,
+  yard: <IconMenuYard />,
+  cfs: <IconMenuCfs />,
+  operation: <IconMenuOperation />,
+  equipment: <IconMenuEquipment />,
+  billing: <IconMenuBilling />,
+  hr: <IconMenuHr />,
+  monitoring: <IconMenuMonitoring />,
+  dashboard: <IconMenuDashboard />,
+  interface: <IconMenuInterface />,
+  admin: <IconMenuAdmin />,
+};
+
+// MenuItem 컴포넌트 타입 정의
+interface MenuItem {
+  id: string;
+  label: string;
+  children?: MenuItem[];
+}
+
+interface MenuItemProps {
+  item: MenuItem;
+  level: number;
+  isExpanded: boolean;
+  // 현재 메뉴까지의 전체 경로
+  fullPath: string[];
+}
+
+const MenuItem = observer(function MenuItem({
+  item,
+  level,
+  isExpanded,
+  fullPath,
+}: MenuItemProps) {
+  const hasChildren = item.children && item.children.length > 0;
+  const expandedMenus = menuStore.expandedMenus;
+  const isMenuExpanded = expandedMenus.includes(item.id);
+
+  const handleClick = () => {
+    if (level === 0) {
+      // 최상위 메뉴
+      if (hasChildren) {
+        // Drawer Menu는 현재 클릭한 Depth 1의 메뉴만 펼치며, 나머지는 접어야 한다
+        menuStore.expandTopLevelMenu(item.id);
+      } else {
+        // 하위 메뉴가 없는 최상위 메뉴 클릭 시 해당 페이지로 이동
+        menuStore.setCurrentPagePath([item.id]);
+        menuStore.toggleNavExpansion();
+      }
+    } else {
+      // 하위 메뉴
+      if (hasChildren) {
+        menuStore.toggleMenu(item.id);
+      } else {
+        // 실제 페이지로 이동하는 로직
+        // 탭이 없으면 추가하고 선택
+        menuStore.addTabIfNotExists([...fullPath, item.id]);
+        menuStore.toggleNavExpansion();
+      }
+    }
+  };
+
+  return (
+    <>
+      <Box
+        width="100%"
+        height="42px"
+        display="flex"
+        overflow="hidden"
+        flexShrink={0}
+        alignItems="center"
+        whiteSpace="nowrap"
+        borderBottom="1px solid #E0E0E0"
+        sx={{
+          color: theme.palette.action.active,
+          cursor: "pointer",
+          "&:hover": {
+            backgroundColor: "rgba(0, 0, 0, 0.04)",
+          },
+        }}
+        onClick={handleClick}
+      >
+        <Box
+          width="42px"
+          height="42px"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexShrink={0}
+        >
+          {level === 0 ? menuIconMap[item.id] : null}
+        </Box>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isExpanded ? 1 : 0 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            delay: 0.15,
+            duration: 0.2,
+          }}
+          style={{
+            flex: 1,
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="subtitle1" color="black">
+            {item.label}
+          </Typography>
+        </motion.div>
+        {hasChildren && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isExpanded ? 1 : 0 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              delay: 0.15,
+              duration: 0.2,
+            }}
+          >
+            <motion.div
+              style={{
+                width: "42px",
+                height: "42px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexShrink: 0,
+              }}
+              animate={{
+                rotate: isMenuExpanded ? 180 : 0,
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              <ArrowDropDown />
+            </motion.div>
+          </motion.div>
+        )}
+      </Box>
+
+      {/* 자식 메뉴들 */}
+      <AnimatePresence>
+        {hasChildren && isMenuExpanded && (level === 0 ? isExpanded : true) && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{ overflow: "hidden" }}
+          >
+            {item.children?.map((child, index) => (
+              <motion.div
+                key={child.id}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{
+                  delay: index * 0.05,
+                  duration: 0.2,
+                }}
+              >
+                <MenuItem
+                  item={child}
+                  level={level + 1}
+                  isExpanded={true}
+                  fullPath={[...fullPath, item.id]}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+});
 
 const SideNavigation = observer(function SideNavigation() {
-  const handleMenuClick = () => {
-    menuStore.toggleNavExpansion();
+  const handleMenuClick = (menuId: string) => {
+    // Case 1, 2에 따른 처리
+    menuStore.handleSideMenuClick(menuId);
+  };
+
+  // Case 3: Side Menu의 빈 공간 클릭 처리
+  const handleEmptySpaceClick = (e: React.MouseEvent) => {
+    // 메뉴 아이콘이 아닌 빈 공간을 클릭했는지 확인
+    if (e.target === e.currentTarget) {
+      menuStore.handleEmptySpaceClick();
+    }
   };
 
   return (
@@ -141,9 +255,11 @@ const SideNavigation = observer(function SideNavigation() {
             minWidth: "42px",
             width: "42px",
             height: "100%",
+            cursor: "pointer",
           }}
+          onClick={handleEmptySpaceClick}
         >
-          {menuItems.map((item, index) => (
+          {menuData.map((item, index) => (
             <Box
               key={item.id}
               padding={1}
@@ -153,7 +269,7 @@ const SideNavigation = observer(function SideNavigation() {
               justifyContent="center"
               alignItems="center"
               borderBottom={
-                index === menuItems.length - 1 ? "none" : "1px solid #E0E0E0"
+                index === menuData.length - 1 ? "none" : "1px solid #E0E0E0"
               }
               sx={{
                 color: theme.palette.action.active,
@@ -162,9 +278,12 @@ const SideNavigation = observer(function SideNavigation() {
                   backgroundColor: "rgba(0, 0, 0, 0.04)",
                 },
               }}
-              onClick={handleMenuClick}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleMenuClick(item.id);
+              }}
             >
-              {item.icon}
+              {menuIconMap[item.id]}
             </Box>
           ))}
         </Box>
@@ -205,82 +324,18 @@ const SideNavigation = observer(function SideNavigation() {
                 boxShadow:
                   "0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12)",
                 backgroundColor: "white",
-                overflow: "hidden",
+                overflowY: "auto",
+                overflowX: "hidden",
               }}
             >
-              {menuItems.map((item, index) => (
-                <Box
+              {menuData.map((item) => (
+                <MenuItem
                   key={item.id}
-                  width="100%"
-                  height="42px"
-                  display="flex"
-                  overflow="hidden"
-                  flexShrink={0}
-                  alignItems="center"
-                  whiteSpace="nowrap"
-                  borderBottom={
-                    index === menuItems.length - 1
-                      ? "none"
-                      : "1px solid #E0E0E0"
-                  }
-                  sx={{
-                    color: theme.palette.action.active,
-                    cursor: "pointer",
-                    "&:hover": {
-                      backgroundColor: "rgba(0, 0, 0, 0.04)",
-                    },
-                  }}
-                  onClick={handleMenuClick}
-                >
-                  <Box
-                    width="42px"
-                    height="42px"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    flexShrink={0}
-                  >
-                    {item.icon}
-                  </Box>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      delay: 0.15,
-                      duration: 0.2,
-                    }}
-                    style={{
-                      flex: 1,
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Typography variant="subtitle1" color="black">
-                      {item.label}
-                    </Typography>
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      delay: 0.15,
-                      duration: 0.2,
-                    }}
-                  >
-                    <Box
-                      width="42px"
-                      height="42px"
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      flexShrink={0}
-                    >
-                      <ArrowDropDown />
-                    </Box>
-                  </motion.div>
-                </Box>
+                  item={item}
+                  level={0}
+                  isExpanded={menuStore.isNavExpanded}
+                  fullPath={[]}
+                />
               ))}
             </Box>
           </motion.div>
