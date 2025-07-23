@@ -292,6 +292,35 @@ const theme = createTheme({
         },
       },
     },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+          "& .MuiFormControlLabel-label": {
+            fontSize: "13px",
+            textWrap: "nowrap",
+          },
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+          height: "40px",
+          minHeight: "40px",
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          height: "40px",
+          minHeight: "40px",
+          padding: "0 16px",
+        },
+      },
+    },
+
     MuiTextField: {
       styleOverrides: {
         root: {

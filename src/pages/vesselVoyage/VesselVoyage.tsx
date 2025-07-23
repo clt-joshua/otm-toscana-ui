@@ -12,9 +12,10 @@ import {
   VESSEL_SCHEDULE_LIST_TABLE_DATA,
 } from "../../constants/vesselVoyageData";
 import VoyageInformation from "./VoyageInformation";
+import VoyageSchedule from "./VoyageSchedule";
 
 export default function VesselVoyage() {
-  const [tab, setTab] = useState<string>("vesselScheduleList");
+  const [tab, setTab] = useState<string>("vesselInformation");
 
   return (
     <Box gap={1} flex={1} display="flex" flexDirection="column">
@@ -114,16 +115,14 @@ export default function VesselVoyage() {
       >
         <Box paddingX={1} borderBottom={1} borderColor={blueGrey[200]}>
           <Tabs value={tab} onChange={(_, value) => setTab(value)}>
-            <Tab label="Vessel Information" />
-            <Tab label="Voyage Schedule" />
-            <Tab label="Voyage Log" />
+            <Tab label="Vessel Information" value="vesselInformation" />
+            <Tab label="Voyage Schedule" value="voyageSchedule" />
+            <Tab label="Voyage Log" value="voyageLog" />
           </Tabs>
         </Box>
         <Box display="flex" flexDirection="row" padding={1} gap={1}>
           <VoyageInformation />
-          <BasicContainer title="Voyage Schedule">
-            <Box padding={1}></Box>
-          </BasicContainer>
+          <VoyageSchedule />
         </Box>
       </Box>
       <Box display="flex" flexDirection="row" gap={1}>
