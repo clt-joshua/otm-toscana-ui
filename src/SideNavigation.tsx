@@ -21,6 +21,7 @@ import menuStore from "./stores/MenuStore";
 import { Typography } from "@mui/material";
 import { ArrowDropDown } from "@mui/icons-material";
 import { menuData } from "./constants/menuData";
+import { blueGrey, lightBlue } from "@mui/material/colors";
 
 // 메뉴 ID와 아이콘 매핑
 const menuIconMap: Record<string, React.ReactNode> = {
@@ -100,13 +101,45 @@ const MenuItem = observer(function MenuItem({
         flexShrink={0}
         alignItems="center"
         whiteSpace="nowrap"
-        borderBottom="1px solid #E0E0E0"
+        borderBottom={1}
         sx={{
-          color: theme.palette.action.active,
+          // Depth별 스타일링 분기
+          ...(level === 0 && {
+            height: "42px",
+            backgroundColor: isMenuExpanded ? blueGrey[50] : "white",
+            "&:hover": {
+              backgroundColor: blueGrey[50],
+            },
+            borderColor: "#eceff1",
+          }),
+          ...(level === 1 && {
+            height: "32px",
+            backgroundColor: isMenuExpanded ? blueGrey[200] : blueGrey[100],
+            "&:hover": {
+              backgroundColor: blueGrey[200],
+            },
+            borderColor: isMenuExpanded ? "#90a4ae" : "#b0bec5",
+          }),
+          ...(level === 2 && {
+            height: "30px",
+            paddingLeft: "16px",
+            color: isMenuExpanded ? "white" : "black",
+            backgroundColor: isMenuExpanded ? blueGrey[500] : blueGrey[200],
+            "&:hover": {
+              backgroundColor: blueGrey[400],
+            },
+            borderColor: isMenuExpanded ? "#546e7a" : "#78909c",
+          }),
+          ...(level === 3 && {
+            height: "30px",
+            paddingLeft: "24px",
+            color: "white",
+            backgroundColor: isMenuExpanded ? blueGrey[900] : blueGrey[800],
+            "&:hover": {
+              backgroundColor: blueGrey[900],
+            },
+          }),
           cursor: "pointer",
-          "&:hover": {
-            backgroundColor: "rgba(0, 0, 0, 0.04)",
-          },
         }}
         onClick={handleClick}
       >
@@ -117,6 +150,7 @@ const MenuItem = observer(function MenuItem({
           justifyContent="center"
           alignItems="center"
           flexShrink={0}
+          color={theme.palette.action.active}
         >
           {level === 0 ? menuIconMap[item.id] : null}
         </Box>
@@ -134,7 +168,7 @@ const MenuItem = observer(function MenuItem({
             alignItems: "center",
           }}
         >
-          <Typography variant="subtitle1" color="black">
+          <Typography variant="subtitle1" color="inherit">
             {item.label}
           </Typography>
         </motion.div>
@@ -218,6 +252,8 @@ const SideNavigation = observer(function SideNavigation() {
     }
   };
 
+  const currentDepth0Menu = menuStore.currentPagePath[0];
+
   return (
     <Box
       sx={{
@@ -268,15 +304,17 @@ const SideNavigation = observer(function SideNavigation() {
               display="flex"
               justifyContent="center"
               alignItems="center"
+              bgcolor={currentDepth0Menu === item.id ? lightBlue[100] : "white"}
               borderBottom={
                 index === menuData.length - 1 ? "none" : "1px solid #E0E0E0"
               }
+              color={
+                currentDepth0Menu === item.id
+                  ? blueGrey[900]
+                  : theme.palette.action.active
+              }
               sx={{
-                color: theme.palette.action.active,
                 cursor: "pointer",
-                "&:hover": {
-                  backgroundColor: "rgba(0, 0, 0, 0.04)",
-                },
               }}
               onClick={(e) => {
                 e.stopPropagation();
