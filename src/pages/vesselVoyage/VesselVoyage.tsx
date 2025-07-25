@@ -1,7 +1,18 @@
+import {
+	Add,
+	Remove,
+	SaveOutlined,
+	Search,
+	SettingsOutlined,
+	ZoomOutMap,
+} from "@mui/icons-material";
 import { Box, Checkbox, Tab, Tabs, TextField } from "@mui/material";
 import { blueGrey } from "@mui/material/colors";
 import { format } from "date-fns";
 import { useState } from "react";
+import ExcelIcon from "../../assets/icon_excel.svg?react";
+import PdfIcon from "../../assets/icon_pdf.svg?react";
+import OutlinedIconButton from "../../components/button/OutlinedIconButton";
 import BasicCustomChip from "../../components/chip/BasicCustomChip";
 import BasicContainer from "../../components/container/BasicContainer";
 import DetailContainer from "../../components/container/DetailContainer";
@@ -12,15 +23,41 @@ import {
 	VESSEL_SCHEDULE_LIST_TABLE_DATA,
 } from "../../constants/vesselVoyageData";
 import VoyageInformation from "./VoyageInformation";
+import VoyageSchedule from "./VoyageSchedule";
 
 export default function VesselVoyage() {
-	const [tab, setTab] = useState<string>("vesselScheduleList");
+	const [tab, setTab] = useState<string>("vesselInformation");
 
 	return (
-		<Box padding={1} gap={1} flex={1} display="flex" flexDirection="column">
+		<Box gap={1} flex={1} display="flex" flexDirection="column">
 			<BasicContainer
 				title="Vessel Schedule List"
 				sx={{ gridColumn: "span 2" }}
+				buttonSlot={
+					<>
+						<OutlinedIconButton color="info" aria-label="excel">
+							<ExcelIcon />
+						</OutlinedIconButton>
+						<OutlinedIconButton color="info" aria-label="pdf">
+							<PdfIcon />
+						</OutlinedIconButton>
+						<OutlinedIconButton color="info" aria-label="add">
+							<Add sx={{ fontSize: "20px" }} />
+						</OutlinedIconButton>
+						<OutlinedIconButton color="info" aria-label="remove">
+							<Remove sx={{ fontSize: "20px" }} />
+						</OutlinedIconButton>
+						<OutlinedIconButton color="info" aria-label="search">
+							<Search sx={{ fontSize: "20px" }} />
+						</OutlinedIconButton>
+						<OutlinedIconButton color="info" aria-label="save">
+							<SaveOutlined sx={{ fontSize: "20px" }} />
+						</OutlinedIconButton>
+						<OutlinedIconButton color="info" aria-label="zoom">
+							<ZoomOutMap sx={{ fontSize: "20px" }} />
+						</OutlinedIconButton>
+					</>
+				}
 			>
 				<Box
 					padding={1}
@@ -38,11 +75,8 @@ export default function VesselVoyage() {
 						sx={{
 							display: "flex",
 							flexDirection: "column",
-							flexGrow: 1,
-							flexShrink: 1,
-							height: 0,
 							minWidth: 0,
-							overflow: "auto",
+							height: 200,
 						}}
 					>
 						<BasicDataGrid
@@ -117,20 +151,36 @@ export default function VesselVoyage() {
 			>
 				<Box paddingX={1} borderBottom={1} borderColor={blueGrey[200]}>
 					<Tabs value={tab} onChange={(_, value) => setTab(value)}>
-						<Tab label="Vessel Information" />
-						<Tab label="Voyage Schedule" />
-						<Tab label="Voyage Log" />
+						<Tab label="Vessel Information" value="vesselInformation" />
+						<Tab label="Voyage Schedule" value="voyageSchedule" />
+						<Tab label="Voyage Log" value="voyageLog" />
 					</Tabs>
 				</Box>
 				<Box display="flex" flexDirection="row" padding={1} gap={1}>
 					<VoyageInformation />
-					<BasicContainer title="Voyage Schedule">
-						<Box padding={1}></Box>
-					</BasicContainer>
+					<VoyageSchedule />
 				</Box>
 			</Box>
-			<Box display="flex" flexDirection="row" gap={1} height={140}>
-				<BasicContainer title="Voyage Information (Supplement)">
+			<Box display="flex" flexDirection="row" gap={1}>
+				<BasicContainer
+					title="Voyage Information (Supplement)"
+					buttonSlot={
+						<>
+							<OutlinedIconButton color="info" aria-label="settings">
+								<SettingsOutlined sx={{ fontSize: "20px" }} />
+							</OutlinedIconButton>
+							<OutlinedIconButton color="info" aria-label="search">
+								<Search sx={{ fontSize: "20px" }} />
+							</OutlinedIconButton>
+							<OutlinedIconButton color="info" aria-label="save">
+								<SaveOutlined sx={{ fontSize: "20px" }} />
+							</OutlinedIconButton>
+							<OutlinedIconButton color="info" aria-label="zoom">
+								<ZoomOutMap sx={{ fontSize: "20px" }} />
+							</OutlinedIconButton>
+						</>
+					}
+				>
 					<Box
 						padding={1}
 						display="flex"
@@ -144,11 +194,7 @@ export default function VesselVoyage() {
 							sx={{
 								display: "flex",
 								flexDirection: "column",
-								flexGrow: 1,
-								flexShrink: 1,
-								height: 0,
 								minWidth: 0,
-								overflow: "auto",
 							}}
 						>
 							<BasicDataGrid
@@ -166,7 +212,19 @@ export default function VesselVoyage() {
 						</DetailContainer>
 					</Box>
 				</BasicContainer>
-				<BasicContainer title="Voyage Log">
+				<BasicContainer
+					title="Voyage Log"
+					buttonSlot={
+						<>
+							<OutlinedIconButton color="info" aria-label="search">
+								<Search sx={{ fontSize: "20px" }} />
+							</OutlinedIconButton>
+							<OutlinedIconButton color="info" aria-label="zoom">
+								<ZoomOutMap sx={{ fontSize: "20px" }} />
+							</OutlinedIconButton>
+						</>
+					}
+				>
 					<Box
 						padding={1}
 						display="flex"
@@ -180,11 +238,7 @@ export default function VesselVoyage() {
 							sx={{
 								display: "flex",
 								flexDirection: "column",
-								flexGrow: 1,
-								flexShrink: 1,
-								height: 0,
 								minWidth: 0,
-								overflow: "auto",
 							}}
 						>
 							<BasicDataGrid

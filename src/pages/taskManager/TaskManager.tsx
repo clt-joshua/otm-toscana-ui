@@ -1,3 +1,4 @@
+import { Portal } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useCallback } from "react";
 import DetailContainer from "../../components/container/DetailContainer";
@@ -15,7 +16,6 @@ import { TaskManagerHeader } from "./TaskManagerHeader";
 
 export default function TaskManager() {
 	const { state, handleToggleChange, handleChipClick } = useTaskManager();
-
 	const handleAction = useCallback((action: string) => {
 		// 액션 처리 로직
 		console.log("Action:", action);
@@ -28,13 +28,7 @@ export default function TaskManager() {
 			flexDirection="column"
 			sx={{ flex: 1, minWidth: 0 }}
 		>
-			<Box
-				margin={1}
-				flex={1}
-				display="flex"
-				flexDirection="column"
-				sx={{ minWidth: 0 }}
-			>
+			<Box flex={1} display="flex" flexDirection="column" sx={{ minWidth: 0 }}>
 				<TaskManagerHeader
 					toggleSelection={state.toggleSelection}
 					onToggleChange={handleToggleChange}
@@ -58,9 +52,6 @@ export default function TaskManager() {
 							sx={{
 								display: "flex",
 								flexDirection: "column",
-								flexGrow: 1,
-								flexShrink: 1,
-								height: 0,
 								minWidth: 0,
 							}}
 						>
@@ -69,12 +60,14 @@ export default function TaskManager() {
 					</Box>
 				</TaskManagerHeader>
 			</Box>
-			<TaskManagerFooter
-				total={22100}
-				startData={START_BUTTON_DATA}
-				endData={END_BUTTON_DATA}
-				onAction={handleAction}
-			/>
+			<Portal container={() => document.getElementById("footer")}>
+				<TaskManagerFooter
+					total={22100}
+					startData={START_BUTTON_DATA}
+					endData={END_BUTTON_DATA}
+					onAction={handleAction}
+				/>
+			</Portal>
 		</Box>
 	);
 }

@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker";
 import React from "react";
-import ShipIcon from "../assets/icon_ship.svg?react";
+import ShipIcon from "../assets/icon_menu_ship.svg?react";
+import TruckIcon from "../assets/icon_menu_truck.svg?react";
 import TerminalIcon from "../assets/icon_terminal.svg?react";
-import TruckIcon from "../assets/icon_truck.svg?react";
 import type {
 	ButtonData,
 	ChipGroup,
@@ -117,7 +117,7 @@ export const CHIP_GROUPS: ChipGroup[] = [
 export const STATUS_OPTIONS = ["Initialize", "Active", "Complete", "Suspended"];
 
 export const TASK_MANAGER_TABLE_DATA: TaskManagerTableProps[] = Array.from(
-	{ length: 20 },
+	{ length: 100 },
 	(_, idx) => ({
 		status: faker.helpers.arrayElement([
 			"Initialize",
