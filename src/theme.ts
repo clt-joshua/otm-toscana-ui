@@ -87,62 +87,8 @@ export const customColors = {
 	},
 };
 
-const theme = createTheme({
-	palette: {
-		primary: {
-			main: "#2196F3",
-			contrastText: "#fff",
-		},
-		info: {
-			main: "#0288D1",
-			dark: "#01579B",
-			contrastText: "#FFFFFF",
-		},
-		success: {
-			main: "#2E7D32",
-			dark: "#1B5E20",
-			contrastText: "#FFFFFF",
-		},
-		error: {
-			main: "#D32F2F",
-		},
-		secondary: {
-			main: "#9c27b0",
-			light: "#d05ce3",
-			dark: "#6a0080",
-			contrastText: "#fff",
-		},
-		grey: {
-			50: customColors.blueGrey[50],
-			100: customColors.blueGrey[100],
-			200: customColors.blueGrey[200],
-			300: customColors.grey[300],
-			400: customColors.grey[400],
-			500: customColors.grey[500],
-			600: customColors.grey[600],
-			800: customColors.grey[800],
-			900: customColors.blueGrey[900],
-		},
-		text: {
-			primary: "rgba(0, 0, 0, 0.87)",
-			secondary: "rgba(0, 0, 0, 0.6)",
-			disabled: "rgba(0, 0, 0, 0.2)",
-		},
-		background: {
-			default: "#FFFFFF",
-			paper: "#FFFFFF",
-		},
-		divider: "#E0E0E0",
-		// action은 palette 내부에 위치해야 함
-		action: {
-			active: "rgba(84, 110, 122, 0.88)",
-			hover: "rgba(84, 110, 122, 0.04)",
-			selected: "rgba(84, 110, 122, 0.12)",
-			focus: "rgba(84, 110, 122, 0.16)",
-			disabled: "rgba(84, 110, 122, 0.48)",
-			disabledBackground: "rgba(84, 110, 122, 0.16)",
-		},
-	},
+// 공통 테마 설정
+const getCommonTheme = () => ({
 	typography: {
 		fontFamily: 'Roboto, "Helvetica Neue", Arial, sans-serif',
 		h6: {
@@ -181,14 +127,14 @@ const theme = createTheme({
 			fontSize: 15,
 			lineHeight: "26px",
 			letterSpacing: 0.46,
-			textTransform: "uppercase",
+			textTransform: "uppercase" as const,
 		},
 		buttonSmall: {
 			fontWeight: 500,
 			fontSize: 13,
 			lineHeight: "22px",
 			letterSpacing: 0.46,
-			textTransform: "uppercase",
+			textTransform: "uppercase" as const,
 		},
 		tableHeader: {
 			fontWeight: 500,
@@ -246,14 +192,6 @@ const theme = createTheme({
 		},
 	},
 	components: {
-		// 예시: Rating, Chip 등 컴포넌트별 색상 커스터마이즈
-		// MuiRating: {
-		//   styleOverrides: {
-		//     iconEmpty: {
-		//       borderColor: "rgba(0, 0, 0, 0.23)",
-		//     },
-		//   },
-		// },
 		MuiChip: {
 			styleOverrides: {
 				root: {
@@ -288,8 +226,8 @@ const theme = createTheme({
 		},
 		MuiCheckbox: {
 			defaultProps: {
-				color: "info",
-				size: "small",
+				color: "info" as const,
+				size: "small" as const,
 			},
 			styleOverrides: {
 				root: {
@@ -326,7 +264,6 @@ const theme = createTheme({
 				},
 			},
 		},
-
 		MuiTextField: {
 			styleOverrides: {
 				root: {
@@ -369,9 +306,67 @@ const theme = createTheme({
 				},
 			},
 		},
-		// 예시: native 스크롤바 색상, outline 등은 필요시 styleOverrides에서 활용
 	},
-	// typography 등 추가 확장 가능
 });
+
+// 라이트 테마
+export const lightTheme = createTheme({
+	palette: {
+		mode: "light",
+		primary: {
+			main: "#2196F3",
+			contrastText: "#fff",
+		},
+		info: {
+			main: "#0288D1",
+			contrastText: "#FFFFFF",
+		},
+		success: {
+			main: "#2E7D32",
+			contrastText: "#FFFFFF",
+		},
+		error: {
+			main: "#D32F2F",
+		},
+		secondary: {
+			main: "#9c27b0",
+			light: "#d05ce3",
+			contrastText: "#fff",
+		},
+		grey: {
+			50: customColors.blueGrey[50],
+			100: customColors.blueGrey[100],
+			200: customColors.blueGrey[200],
+			300: customColors.grey[300],
+			400: customColors.grey[400],
+			500: customColors.grey[500],
+			600: customColors.grey[600],
+			800: customColors.grey[800],
+			900: customColors.blueGrey[900],
+		},
+		text: {
+			primary: "rgba(0, 0, 0, 0.87)",
+			secondary: "rgba(0, 0, 0, 0.6)",
+			disabled: "rgba(0, 0, 0, 0.2)",
+		},
+		background: {
+			default: "#FFFFFF",
+			paper: "#FFFFFF",
+		},
+		divider: "#E0E0E0",
+		action: {
+			active: "rgba(84, 110, 122, 0.88)",
+			hover: "rgba(84, 110, 122, 0.04)",
+			selected: "rgba(84, 110, 122, 0.12)",
+			focus: "rgba(84, 110, 122, 0.16)",
+			disabled: "rgba(84, 110, 122, 0.48)",
+			disabledBackground: "rgba(84, 110, 122, 0.16)",
+		},
+	},
+	...getCommonTheme(),
+});
+
+// 기본 테마 (라이트 테마)
+const theme = lightTheme;
 
 export default theme;
