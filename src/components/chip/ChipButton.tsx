@@ -28,49 +28,49 @@ import { Avatar, Chip, type ChipProps } from "@mui/material";
  * @returns {JSX.Element} 렌더링된 칩 버튼
  */
 export default function ChipButton(props: ChipProps) {
-  const { label, ...rest } = props;
+	const { label, ...rest } = props;
 
-  return (
-    <Chip
-      icon={
-        props.icon ? (
-          <Avatar
-            sx={{
-              backgroundColor: `${props.color}.dark`,
-              width: "18px",
-              height: "18px",
-            }}
-          >
-            {props.icon}
-          </Avatar>
-        ) : undefined
-      }
-      sx={{
-        "& .MuiChip-label": {
-          display: "flex",
-          alignItems: "center",
-        },
-        // 우측에 드롭다운 화살표 생성
-        "&::after": {
-          content: '""',
-          position: "absolute",
-          right: "10px",
-          top: "50%",
-          transform: "translateY(-50%)",
-          width: "0",
-          height: "0",
-          borderLeft: "4px solid transparent",
-          borderRight: "4px solid transparent",
-          borderTop: "4px solid currentColor",
-        },
-        position: "relative",
-        paddingRight: "16px", // 화살표 공간 확보
-      }}
-      label={label}
-      variant="filled"
-      color={props.color}
-      onClick={props.onClick}
-      {...rest}
-    />
-  );
+	return (
+		<Chip
+			icon={
+				props.icon ? (
+					<Avatar
+						sx={{
+							backgroundColor: `${props.color}.dark`,
+							width: "18px",
+							height: "18px",
+						}}
+					>
+						{props.icon}
+					</Avatar>
+				) : undefined
+			}
+			sx={{
+				"& .MuiChip-label": {
+					display: "flex",
+					alignItems: "center",
+				},
+				// 우측에 드롭다운 화살표 생성
+				"&::after": {
+					content: '""',
+					position: "absolute",
+					right: "10px",
+					top: "50%",
+					transform: "translateY(-50%)",
+					width: "0",
+					height: "0",
+					borderLeft: "4px solid transparent",
+					borderRight: "4px solid transparent",
+					borderTop: "4px solid currentColor",
+				},
+				position: "relative",
+				paddingRight: "16px", // 화살표 공간 확보
+			}}
+			label={label}
+			variant="filled"
+			color={props.color}
+			onClick={props.onClick}
+			{...rest}
+		/>
+	);
 }

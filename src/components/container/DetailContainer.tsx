@@ -31,25 +31,25 @@ import { blueGrey } from "@mui/material/colors";
  * @returns {JSX.Element} 렌더링된 상세 컨테이너
  */
 export default function DetailContainer({ children, ...props }: BoxProps) {
-  return (
-    <Box
-      borderRadius={1}
-      border={1}
-      borderColor={blueGrey[200]}
-      sx={{
-        overflow: "auto", // 세로 스크롤 활성화
-        overflowX: "auto", // 가로 스크롤 활성화
-        width: "100%",
-        height: "100%",
-        minWidth: 0, // flex 아이템에서 최소 너비 제한 해제
-        minHeight: 0, // flex 아이템에서 최소 높이 제한 해제
-        maxWidth: "100%",
-        flexShrink: 1, // 공간이 부족할 때 축소 허용
-        ...props.sx,
-      }}
-      {...props}
-    >
-      {children}
-    </Box>
-  );
+	return (
+		<Box
+			borderRadius={1}
+			border={1}
+			borderColor={blueGrey[200]}
+			sx={{
+				overflow: "auto", // 세로 스크롤 활성화
+				overflowX: "auto", // 가로 스크롤 활성화
+				width: "100%",
+				height: "100%",
+				minWidth: 0, // flex 아이템에서 최소 너비 제한 해제
+				minHeight: 0, // flex 아이템에서 최소 높이 제한 해제
+				maxWidth: "100%",
+				flexShrink: 1, // 공간이 부족할 때 축소 허용
+				...props.sx,
+			}}
+			{...props}
+		>
+			{children}
+		</Box>
+	);
 }

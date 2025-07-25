@@ -6,14 +6,14 @@ import { blueGrey } from "@mui/material/colors";
  * BasicContainer 컴포넌트의 속성 정의
  */
 interface BasicContainerProps {
-  /** 컨테이너 내부에 표시될 콘텐츠 */
-  children: React.ReactNode;
-  /** 컨테이너 상단 헤더에 표시될 제목 */
-  title: string;
-  /** 헤더 우측에 표시될 버튼이나 액션 요소들 */
-  buttonSlot?: React.ReactNode;
-  /** 추가적인 스타일 속성 */
-  sx?: SxProps;
+	/** 컨테이너 내부에 표시될 콘텐츠 */
+	children: React.ReactNode;
+	/** 컨테이너 상단 헤더에 표시될 제목 */
+	title: string;
+	/** 헤더 우측에 표시될 버튼이나 액션 요소들 */
+	buttonSlot?: React.ReactNode;
+	/** 추가적인 스타일 속성 */
+	sx?: SxProps;
 }
 
 /**
@@ -49,37 +49,37 @@ interface BasicContainerProps {
  * @returns {JSX.Element} 렌더링된 컨테이너
  */
 export default function BasicContainer({
-  children,
-  title,
-  buttonSlot,
-  sx,
+	children,
+	title,
+	buttonSlot,
+	sx,
 }: BasicContainerProps) {
-  return (
-    <Box
-      flex={1}
-      bgcolor="white"
-      borderRadius={1}
-      border={1}
-      display="flex"
-      flexDirection="column"
-      borderColor={blueGrey[200]}
-      sx={{ minWidth: 0, ...sx }}
-    >
-      {/* 헤더 영역 */}
-      <Box
-        padding="8px 12px"
-        borderBottom={1}
-        borderColor={blueGrey[200]}
-        display="flex"
-        justifyContent="space-between"
-      >
-        <Typography variant="tableHeader">{title}</Typography>
-        <Box display="flex" gap={1}>
-          {buttonSlot}
-        </Box>
-      </Box>
-      {/* 콘텐츠 영역 */}
-      <Box flex={1}>{children}</Box>
-    </Box>
-  );
+	return (
+		<Box
+			flex={1}
+			bgcolor="white"
+			borderRadius={1}
+			border={1}
+			display="flex"
+			flexDirection="column"
+			borderColor={blueGrey[200]}
+			sx={{ minWidth: 0, ...sx }}
+		>
+			{/* 헤더 영역 */}
+			<Box
+				padding="8px 12px"
+				borderBottom={1}
+				borderColor={blueGrey[200]}
+				display="flex"
+				justifyContent="space-between"
+			>
+				<Typography variant="tableHeader">{title}</Typography>
+				<Box display="flex" gap={1}>
+					{buttonSlot}
+				</Box>
+			</Box>
+			{/* 콘텐츠 영역 */}
+			<Box flex={1}>{children}</Box>
+		</Box>
+	);
 }

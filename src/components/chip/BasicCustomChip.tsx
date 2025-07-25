@@ -4,12 +4,12 @@ import Chip from "@mui/material/Chip";
  * BasicCustomChip 컴포넌트의 속성 정의
  */
 interface BasicCustomChipProps {
-  /** 칩에 표시될 텍스트 */
-  label: string;
-  /** 칩의 배경색 (CSS 색상값) */
-  bgColor: string;
-  /** 칩의 텍스트 색상 (CSS 색상값) */
-  textColor: string;
+	/** 칩에 표시될 텍스트 */
+	label: string;
+	/** 칩의 배경색 (CSS 색상값) */
+	bgColor: string;
+	/** 칩의 텍스트 색상 (CSS 색상값) */
+	textColor: string;
 }
 
 /**
@@ -40,23 +40,23 @@ interface BasicCustomChipProps {
  * @returns {JSX.Element} 렌더링된 칩
  */
 export default function BasicCustomChip({
-  label,
-  bgColor,
-  textColor,
+	label,
+	bgColor,
+	textColor,
 }: BasicCustomChipProps) {
-  return (
-    <Chip
-      label={label}
-      size="small"
-      variant="filled"
-      sx={{
-        backgroundColor: bgColor,
-        color: textColor,
-        borderRadius: "4px",
-        "& .MuiChip-label": {
-          fontWeight: 500,
-        },
-      }}
-    />
-  );
+	return (
+		<Chip
+			label={label}
+			size="small"
+			variant="filled"
+			sx={{
+				backgroundColor: bgColor,
+				color: textColor,
+				borderRadius: "4px",
+				"& .MuiChip-label": {
+					fontWeight: 500,
+				},
+			}}
+		/>
+	);
 }

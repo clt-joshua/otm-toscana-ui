@@ -6,8 +6,8 @@ import Chip, { type ChipProps } from "@mui/material/Chip";
  * CheckableChip 컴포넌트의 속성 정의
  */
 interface CheckableChipProps extends ChipProps {
-  /** 체크 상태 여부 */
-  checked: boolean;
+	/** 체크 상태 여부 */
+	checked: boolean;
 }
 
 /**
@@ -37,33 +37,33 @@ interface CheckableChipProps extends ChipProps {
  * @returns {JSX.Element} 렌더링된 체크 가능한 칩
  */
 export default function CheckableChip(props: CheckableChipProps) {
-  const { checked, label, ...rest } = props;
+	const { checked, label, ...rest } = props;
 
-  return (
-    <Chip
-      icon={
-        checked ? (
-          <Avatar
-            sx={{
-              backgroundColor: `${props.color}.dark`,
-              width: "18px",
-              height: "18px",
-            }}
-          >
-            <CheckIcon sx={{ fontSize: "18px", color: "white" }} />
-          </Avatar>
-        ) : undefined
-      }
-      sx={{
-        "& .MuiChip-label": {
-          display: "flex",
-          alignItems: "center",
-        },
-      }}
-      label={label}
-      color={checked ? "info" : "default"}
-      variant={checked ? "filled" : "outlined"}
-      {...rest}
-    />
-  );
+	return (
+		<Chip
+			icon={
+				checked ? (
+					<Avatar
+						sx={{
+							backgroundColor: `${props.color}.dark`,
+							width: "18px",
+							height: "18px",
+						}}
+					>
+						<CheckIcon sx={{ fontSize: "18px", color: "white" }} />
+					</Avatar>
+				) : undefined
+			}
+			sx={{
+				"& .MuiChip-label": {
+					display: "flex",
+					alignItems: "center",
+				},
+			}}
+			label={label}
+			color={checked ? "info" : "default"}
+			variant={checked ? "filled" : "outlined"}
+			{...rest}
+		/>
+	);
 }

@@ -6,8 +6,8 @@ import { customColors } from "../../theme";
  * SearchContainer 컴포넌트의 속성 정의
  */
 interface SearchContainerProps extends BoxProps {
-  /** 컨테이너 내부에 표시될 콘텐츠 */
-  children: React.ReactNode;
+	/** 컨테이너 내부에 표시될 콘텐츠 */
+	children: React.ReactNode;
 }
 
 /**
@@ -39,18 +39,18 @@ interface SearchContainerProps extends BoxProps {
  * @returns {JSX.Element} 렌더링된 검색 컨테이너
  */
 export default function SearchContainer({
-  children,
-  ...props
+	children,
+	...props
 }: SearchContainerProps) {
-  return (
-    <Box
-      bgcolor={customColors.blueGrey[20]} // 연한 회색 배경
-      borderRadius={1}
-      border={1}
-      borderColor={blueGrey[200]}
-      {...props}
-    >
-      {children}
-    </Box>
-  );
+	return (
+		<Box
+			bgcolor={customColors.blueGrey[20]} // 연한 회색 배경
+			borderRadius={1}
+			border={1}
+			borderColor={blueGrey[200]}
+			{...props}
+		>
+			{children}
+		</Box>
+	);
 }
