@@ -9,8 +9,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import theme from "./theme";
+import LoginPage from "./pages/login/page";
 
 // 전역 스타일 적용
 const globalStyles = `
@@ -33,11 +35,27 @@ const styleElement = document.createElement("style");
 styleElement.textContent = globalStyles;
 document.head.appendChild(styleElement);
 
-createRoot(document.getElementById("root")!).render(
-	<StrictMode>
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<App />
-		</ThemeProvider>
-	</StrictMode>,
+const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "*",
+    element: <App />,
+  },
+]);
+
+const container = document.getElementById("root");
+if (!container) {
+  throw new Error("Root element with id 'root' not found");
+}
+
+createRoot(container).render(
+  <StrictMode>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </StrictMode>
 );
